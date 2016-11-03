@@ -1,0 +1,253 @@
+.entete{
+    background-color: #D20000;
+    width: 100%;
+    padding : 0px;
+    margin-bottom: 20px;
+}
+body{
+    background-color: #ecf0f1;
+}
+.menu{
+    
+}
+.navbar{
+    margin-bottom: 0px;
+    padding: 0px;
+    background-color: white;
+    border: 0px solid white;
+    z-index: 2;
+    
+}
+.nav li, nav a{
+    background-color: #FFFFFF;
+}
+
+.logo{
+    margin-left: 100px;
+    padding: 10px;
+	width:150px;
+	height:150px;
+}
+
+.navbar li{
+    border-right: 2px solid black;
+}
+.categorie{
+    border-right: 0px solid black!important;
+}
+nav{
+    margin-top: 50px;
+	margin-right: 50px;
+}
+.description{
+    background-color: white;
+    text-align: justify,
+    padding: 10px;
+    padding-bottom: 50px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.login{
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.connectes{
+    background-color: white;
+    text-align: justify;
+    padding: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.titre_col{
+    text-align: center;
+    border-radius: 10px;
+    background-color: #BF0000;
+    height: 25px;
+    padding: 2.5px;
+    color: #ecf0f1;
+    z-index: 2;
+}
+.liste_connectes{
+    list-style-type: none;
+    text-align: center;
+    padding: inherit;
+}
+.slider{
+    margin-top: 10px;
+    width: 100%;
+}
+
+.recherche_membre{
+    padding-top: 15px;
+    border-radius: 10px;
+}
+.envoi_message{
+    padding-top: 10px;
+}
+.reseaux{
+    background-color: white;
+    padding: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.liste_reseaux{
+    list-style-type: none;
+    text-align: center;
+    padding: inherit;
+}
+.facebook{
+    padding-bottom: 5px;
+}
+.twitter{
+    padding-bottom: 5px;
+	
+}
+.news{
+    background-color: white;
+    padding: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.actu{
+    size= 10pt;
+}
+.recherche{
+    border-radius: 10px;
+    border-color: red;
+    padding-left: 10px;
+}
+.descriptionlan{
+    font-style: italic;
+    font-family: Century;
+    position: relative;
+    text-align: justify;
+}
+
+.titre_fofo{
+    color: red;
+    position: relative;
+    text-align: center;
+    top: 10px;
+}
+.article{
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 102%;
+}
+.gauche{
+    border-right: 2px solid black;
+	margin-right:50px;
+	margin-right:50px;
+}
+.padding-top{
+    margin-top: 20px;
+}
+
+footer{
+	background-color: #D20000;
+	font-size: 20px;
+	color: white;
+	text-decoration: none;
+	
+
+}
+
+footer a:link {color: white;}
+footer a:visited {color: white;}
+footer a:hover {color: white;}
+footer a:active {color: white;}
+
+
+.carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: auto;
+      margin: auto;
+/*      height:auto;*/
+  }
+.item{
+    display: inline;
+    width:100%;
+    height:370px;
+    margin: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: black;
+    vertical-align: middle;
+}
+.item img{
+   height:370px!important;
+    
+}
+
+#user
+{
+    position: absolute;
+    top: -25px;
+    left: 1050px;
+    background-color: white;
+    width:100px;
+    height:100px;
+    border-radius: 50px;
+}
+        
+#user_img
+{
+    position: absolute;
+    top:0px;
+    right: 0px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+}
+        
+#message_notifs
+{
+    position: relative;
+    bottom: 50px;
+    left:825px;
+}
+        
+#number_message
+{
+    position: absolute;
+    top: -12.5px;
+    left: 37.5px;
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    text-align: center;
+    color: red;
+    font-size: 18px;
+}
+        
+#look_notifs
+{
+    position: absolute;
+    left: 75px;
+}
+        
+ #number_notifs
+{
+    position: absolute;
+    top: -12.5px;
+    left: 112.5px;
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    text-align: center;
+    color: red;
+    font-size: 18px;
+}
+        
+.autocomplete-suggestions { border: 1px solid #999; background: #f4eaea; overflow: auto; }
+.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
+.autocomplete-selected { background: #F0F0F0; }
+.autocomplete-suggestions strong { font-weight: normal; color: #f24b58; }
