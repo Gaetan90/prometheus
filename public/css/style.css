@@ -251,3 +251,50 @@ footer a:active {color: white;}
 .autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
 .autocomplete-selected { background: #F0F0F0; }
 .autocomplete-suggestions strong { font-weight: normal; color: #f24b58; }
+
+.face{ 
+    height:300px;
+    overflow: hidden;
+    position: absolute;  
+    width: 302px;           
+}
+        
+.top{           
+    border: 1px solid;
+    top: 202px;
+    left: 602px; 
+    -webkit-transform: rotate(45deg) skew(-15deg, -15deg); <!-- Permet d'incliner div qui va permettre de faire l'effet 3D -->
+    -moz-transform: rotate(45deg) skew(-15deg, -15deg);     
+    transform: rotate(45deg) skew(-15deg, -15deg);
+}
+
+.left{
+    border: 1px solid;
+    top: 435px;
+    left: 468px;            
+    -webkit-transform: rotate(15deg) skew(15deg, 15deg);
+    -moz-transform: rotate(15deg) skew(15deg, 15deg);
+    transform: rotate(15deg) skew(15deg, 15deg);
+    margin-bottom: 20px;
+}
+
+.right{
+    border: 1px solid;
+    top: 435px;
+    left: 736px;            
+    -webkit-transform: rotate(-15deg) skew(-15deg, -15deg);
+    -moz-transform: rotate(-15deg) skew(-15deg, -15deg);   
+    transform: rotate(-15deg) skew(-15deg, -15deg); 
+}
+
+legend 
+{
+    text-align: center;
+}
+        
+#form
+{
+    position: absolute;
+    top: 500px;
+    left: 25px;
+}

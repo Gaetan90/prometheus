@@ -10,6 +10,11 @@ class UsersController extends Controller
 {
     public function login()
     {
+        if(Auth::check())
+        {
+            Auth::logout();
+        }
+
     	return view('login');
     }
 
@@ -65,6 +70,8 @@ class UsersController extends Controller
 
     public function trombinoscope()
     {
+        $user = Auth::user();
 
+        return view('users.trombinoscope')->with(['user'=>$user]);
     }
 }

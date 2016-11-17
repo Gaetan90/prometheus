@@ -12,6 +12,12 @@
 */
 
 Route::get('/', function () {
+	if(Auth::check())
+	{
+		Auth::logout();
+		return redirect()->route('index');
+	}
+
     return view('index');
 })->name('index');
 
