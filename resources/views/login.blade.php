@@ -32,7 +32,7 @@
 
                 {{ Form::close() }}
             </div>
-            <p style="font-size: 20px; color:#AA1111; margin-left: -10%; margin-top: 10%;"><-- Accueil</p>
+            <!-- <p style="font-size: 20px; color:#AA1111; margin-left: -10%; margin-top: 10%;"><-- Accueil</p> -->
         </div>
     </div>
 @stop
