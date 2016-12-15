@@ -16,7 +16,7 @@ Route::get('/', function () {
 })->name('index');
 
 Route::get('users/login', 'UsersController@login')->name('users.login');
-Route::post('/users/authenticate', 'UsersController@authenticate')->name('users.authenticate');
+Route::post('users/authenticate', 'UsersController@authenticate')->name('users.authenticate');
 Route::get('users/index', 'UsersController@index')->name('users.index')->middleware('auth');
 Route::get('users/logout', 'UsersController@logout')->name('users.logout')->middleware('auth');
 Route::get('users/parameters', 'UsersController@parameters')->name('users.parameters')->middleware('auth');
