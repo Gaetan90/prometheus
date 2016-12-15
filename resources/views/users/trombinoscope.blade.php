@@ -1,18 +1,21 @@
 @extends('layouts.default')
 
 @section('contenu')
-	<div class="container">
-		<div class="face top">
-				<img width="100%" height="100%" src="http://localhost/prometheus/public/img/logocesi.png" alt="background"/>				
-			</div>
-					
-			<div class="face left">
-				<div class="etage" id="etage3">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12">
+				<div id="description">
+					<div class="face top">
+						<img width="100%" height="100%" src="http://localhost/prometheus/public/img/logocesi.png" alt="background"/>				
+					</div>
+
+					<div class="face left">
+						<div class="etage" id="etage3">
 							<center><br/><br/>etage 2</center>
 							<div class="salle" id="archive"><div class="text">Archive</div></div>
 
 							<div class="salle" id="S202"><div class="text">S202</div></div>
-							<div class="ga3tes" style="position: absolute; top: 350px; left:143px; width: 15px; height: 23px; background-color: red;"></div>
+							<div class="gates" style="position: absolute; top: 350px; left:143px; width: 15px; height: 23px; background-color: red;"></div>
 							<div class="gates" style="position: absolute; top: 181px; left:143px; width: 15px; height: 25px; background-color: red;"></div>
 							
 							<div class="salle" id="S203"><div class="text">S203</div></div>
@@ -104,8 +107,6 @@
 							<div class="salle" id="B105"><div class="text">B105</div></div>
 							<div class="gates" style="position: absolute; top: 580px; left:148px; width: 10px; height: 26px; background-color: red;"></div>
 							<div id="B1052"></div>
-							
-							<!-- <img src="http://localhost/prometheus/public/img/pacman.png" id="pacman" alt="pacman" /> -->
 						</div>
 							
 						<div class="etage" id="etage1">
@@ -133,28 +134,34 @@
 					
 					<div class="face right">
 						<img width="100%" height="100%" src="http://localhost/prometheus/public/img/logo.png" alt="background" />	
-					</div>	
+					</div>
+
+					<div id="touches">
+						1 : RDC<br/>
+						2 : étage 1<br/>
+						3 : étage 2<br/>
+						b : retour en arrière<br/>
+						<div id="last_touch"></div>
+					</div>
 					
 					<button id="previous">Revenir en arrière</button> <!-- Bouton précédent -->
-		
-		<a href="trombinoscope_simple.php">Voir la liste complète des étudiants</a>
-		
-		<fieldset id="touche"> <!-- Récapitulatif des touches qu'on peut utiliser comme racourci -->
-			<legend>Touches</legend>
-			1 : RDC<br/>
-			2 : étage 1<br/>
-			3 : étage 2<br/>
-			b : retour en arrière<br/><br/>
-			<div id="last_touch"></div>
-		</fieldset>
-		
-		<div id="form">
-			<form method="post">
-				<p>Nom : <input type="text" id="name" /><br/></p>							
-				<input type="submit" value="Rechercher" id="search" />
-			</form>
-			<br/>
-			<div id="message_user"></div>	
+					
+					<br><br>
+
+					<div id="form">
+						<form method="post">
+							<p>Nom : <input type="text" id="name" /><br/></p>							
+							<input type="submit" value="Rechercher" id="search" />
+						</form>
+
+						<br/>
+
+						<div id="message_user"></div>
+					</div>	
+
+					<input type="hidden" id="chemin_user" value="{{ $user->prenom }}_{{ $user->nom}}.jpg" />		
+				</div>
+			</div>
 		</div>
 	</div>
 @stop

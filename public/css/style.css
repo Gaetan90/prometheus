@@ -263,6 +263,7 @@ input
 {
     border-radius: 10px;
     text-align: center;
+<<<<<<< Updated upstream
     border-style: none;
     height: 3vh;
     margin-top: auto;
@@ -299,3 +300,8 @@ input
     text-transform: uppercase;
     font-weight: bold;
   }
+=======
+    color: red;
+    font-size: 18px;
+}
+>>>>>>> Stashed changes
