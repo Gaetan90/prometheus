@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "dc821e0baa92c5615d33f3c68752349f",
+    "hash": "b9c2e9da75f14652349e37e0af879764",
     "content-hash": "0ac60cdafe2814b8262d962a08e20d2b",
     "packages": [
         {
@@ -308,6 +308,7 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< Updated upstream
             "version": "v5.3.24",
             "source": {
                 "type": "git",
@@ -318,6 +319,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/b603b7cf77ff083c2248f7baa23f3add34c3ff84",
                 "reference": "b603b7cf77ff083c2248f7baa23f3add34c3ff84",
+=======
+            "version": "v5.3.23",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "5b920baa30fbd4606829d56f3737cac0633a8db7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/5b920baa30fbd4606829d56f3737cac0633a8db7",
+                "reference": "5b920baa30fbd4606829d56f3737cac0633a8db7",
+>>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
@@ -432,7 +445,11 @@
                 "framework",
                 "laravel"
             ],
+<<<<<<< Updated upstream
             "time": "2016-11-21 14:14:16"
+=======
+            "time": "2016-11-14 15:41:06"
+>>>>>>> Stashed changes
         },
         {
             "name": "laravelcollective/html",
@@ -2634,6 +2651,7 @@
         },
         {
             "name": "phpunit/phpunit",
+<<<<<<< Updated upstream
             "version": "5.6.5",
             "source": {
                 "type": "git",
@@ -2644,6 +2662,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/875145fabfa261fa9c1aea663dd29ddce92dca8f",
                 "reference": "875145fabfa261fa9c1aea663dd29ddce92dca8f",
+=======
+            "version": "5.6.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/phpunit.git",
+                "reference": "a9de0dbafeb6b1391b391fbb034734cb0af9f67c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a9de0dbafeb6b1391b391fbb034734cb0af9f67c",
+                "reference": "a9de0dbafeb6b1391b391fbb034734cb0af9f67c",
+>>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
@@ -2712,7 +2742,11 @@
                 "testing",
                 "xunit"
             ],
+<<<<<<< Updated upstream
             "time": "2016-11-21 15:23:34"
+=======
+            "time": "2016-11-14 06:39:40"
+>>>>>>> Stashed changes
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -2820,6 +2854,7 @@
         },
         {
             "name": "sebastian/comparator",
+<<<<<<< Updated upstream
             "version": "1.2.2",
             "source": {
                 "type": "git",
@@ -2830,6 +2865,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/6a1ed12e8b2409076ab22e3897126211ff8b1f7f",
                 "reference": "6a1ed12e8b2409076ab22e3897126211ff8b1f7f",
+=======
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/comparator.git",
+                "reference": "ce2bda23a56456f19e35d98241446b581f648c14"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/ce2bda23a56456f19e35d98241446b581f648c14",
+                "reference": "ce2bda23a56456f19e35d98241446b581f648c14",
+>>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
@@ -2880,7 +2927,11 @@
                 "compare",
                 "equality"
             ],
+<<<<<<< Updated upstream
             "time": "2016-11-19 09:18:40"
+=======
+            "time": "2016-11-17 14:39:37"
+>>>>>>> Stashed changes
         },
         {
             "name": "sebastian/diff",
@@ -3104,6 +3155,7 @@
         },
         {
             "name": "sebastian/object-enumerator",
+<<<<<<< Updated upstream
             "version": "2.0.0",
             "source": {
                 "type": "git",
@@ -3114,11 +3166,27 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/object-enumerator/zipball/96f8a3f257b69e8128ad74d3a7fd464bcbaa3b35",
                 "reference": "96f8a3f257b69e8128ad74d3a7fd464bcbaa3b35",
+=======
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/object-enumerator.git",
+                "reference": "12dc92be4c9b1286fd37c15d54f7c9d8524f29e0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/object-enumerator/zipball/12dc92be4c9b1286fd37c15d54f7c9d8524f29e0",
+                "reference": "12dc92be4c9b1286fd37c15d54f7c9d8524f29e0",
+>>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.6",
+<<<<<<< Updated upstream
                 "sebastian/recursion-context": "~2.0"
+=======
+                "sebastian/recursion-context": "~1.0.4"
+>>>>>>> Stashed changes
             },
             "require-dev": {
                 "phpunit/phpunit": "~5"
@@ -3146,6 +3214,7 @@
             ],
             "description": "Traverses array structures and object graphs to enumerate all referenced objects",
             "homepage": "https://github.com/sebastianbergmann/object-enumerator/",
+<<<<<<< Updated upstream
             "time": "2016-11-19 07:35:10"
         },
         {
@@ -3160,6 +3229,22 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/recursion-context/zipball/2c3ba150cbec723aa057506e73a8d33bdb286c9a",
                 "reference": "2c3ba150cbec723aa057506e73a8d33bdb286c9a",
+=======
+            "time": "2016-11-16 07:17:31"
+        },
+        {
+            "name": "sebastian/recursion-context",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/recursion-context.git",
+                "reference": "938df7a6478e72795e5f8266cff24d06e3136f2e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/recursion-context/zipball/938df7a6478e72795e5f8266cff24d06e3136f2e",
+                "reference": "938df7a6478e72795e5f8266cff24d06e3136f2e",
+>>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
@@ -3199,7 +3284,11 @@
             ],
             "description": "Provides functionality to recursively process PHP variables",
             "homepage": "http://www.github.com/sebastianbergmann/recursion-context",
+<<<<<<< Updated upstream
             "time": "2016-11-19 07:33:16"
+=======
+            "time": "2016-11-15 06:55:36"
+>>>>>>> Stashed changes
         },
         {
             "name": "sebastian/resource-operations",

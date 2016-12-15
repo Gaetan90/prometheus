@@ -44,3 +44,5 @@ Route::get('users/trombinoscope/informations', function()
 {
 	return view('informations');
 })->name('users.trombinoscope.informations')->middleware('auth');
+Route::get('users/dictionary', 'DictionariesController@dictionary')->name('users.dictionary');
+Route::post('users/dictionary/validate', 'DictionariesController@valid')->name('users.dictionary.valid');
