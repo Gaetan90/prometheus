@@ -517,8 +517,6 @@
 							min_top = top;
 							min_left = left;
 
-							console.log(min_width, min_height);
-
 							$('.left').animate({width: '840px', height: '660px'}, 1500);
 							$('.etage').css('background-image', 'url("")');
 							$('#'+salle).html('').css('line-height', 'normal').css('background-color', "white").animate({'top': '0px', 'left': '0px', width: '840px', height: '660px'}, 1500);
@@ -825,9 +823,25 @@
 							nom = 'El Olmi';
 						}
 
-						salle = data.substring(1);						
+						salle = data.substring(1);
+						etage =	$('#'+salle).parent().attr('id');
+
+						if(etage == 'etage1')
+						{
+							etage = "RDC";
+						}
+
+						else if(etage == "etage2")
+						{
+							etage = "etage 1";
+						}
+
+						else if(etage == "etage3")
+						{
+							etage = "etage 2";
+						}
 						
-						$('#message_user').html(nom+' '+prenom+' est dans la salle '+salle+'<br/><button  class="search_salle" id='+data+'>Y aller</button>');
+						$('#message_user').html(nom+' '+prenom+' est dans la salle '+salle+'('+etage+')<br/><button  class="search_salle" id='+data+'>Y aller</button>');
 					}
 					
 					else
