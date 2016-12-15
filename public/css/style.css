@@ -1,44 +1,128 @@
-.entete{
-    background-color: #D20000;
-    width: 100%;
-    padding : 0px;
-    margin-bottom: 20px;
+/* 
+    --------------------
+        HEADER STYLE
+    --------------------
+*/
+
+#main-menu {
+
+    margin-bottom: 0;
 }
-body{
-    background-color: #ecf0f1;
+/* BRAND FONT COLOR */
+#main-menu.navbar-default .navbar-brand {
+    color: #FFFFFF;
+    height: 50px;
 }
-.menu{
-    
+
+/* BRAND BACKGROUND COLOR */
+#main-menu.navbar-default {
+    font-size: 20px;
+    background-color: #AA1111;
+    text-align: center;
+    border-bottom: none;
 }
-.navbar{
-    margin-bottom: 0px;
-    padding: 0px;
-    background-color: white;
-    border: 0px solid white;
-    z-index: 2;
-    
+
+/* LINK STYLE */
+#main-menu.navbar-default .navbar-nav>li>a {
+    color: #FFFFFF;
+    background-color: transparent;
 }
-.nav li, nav a{
+#main-menu.navbar-default .navbar-nav>li>a:hover,
+#main-menu.navbar-default .navbar-nav>li>a:focus {
+    color:;
+    background-color: #C2242A ;
+}
+
+/* ACTIVE LINK STYLE */
+#main-menu.navbar-default .navbar-nav>.active>a,
+#main-menu.navbar-default .navbar-nav>.active>a:hover,
+#main-menu.navbar-default .navbar-nav>.active>a:focus {
+    color:;
+    background-color: ;
+}
+
+/* TOGGLE ICON STYLE */
+/* ICON BACKGROUND COLOR */
+#main-menu.navbar-default .navbar-toggle {
+    background-color: transparent;
+}
+
+/* BACKGROUND COLOR WHEN HOVER OR FOCUS */
+#main-menu.navbar-default .navbar-toggle:hover,
+#main-menu.navbar-default .navbar-toggle:focus {
+    background-color: transparent;
+}
+
+/* TOGGLE ICON COLOR */
+#main-menu.navbar-default .navbar-toggle .icon-bar {
     background-color: #FFFFFF;
 }
 
-.logo{
-    margin-left: 100px;
-    padding: 10px;
-	width:150px;
-	height:150px;
+/* TOGGLE ICON COLOR WHEN HOVER OR FOCUS*/
+#main-menu.navbar-default .navbar-toggle:hover .icon-bar,
+#main-menu.navbar-default .navbar-toggle:focus .icon-bar {
+    background-color: #FFFFFF;
 }
 
-.navbar li{
-    border-right: 2px solid black;
+html {
+    position: relative;
+    min-height: 100%;
 }
-.categorie{
-    border-right: 0px solid black!important;
-}
-nav{
+
+body {
+    /* Margin top by header height */
     margin-top: 50px;
-	margin-right: 50px;
+    /* Margin bottom by footer height */
+    margin-bottom: 15vh;
+    background-color: #F7F7F7;
 }
+
+
+#user_img
+{
+    position: absolute;
+    top:0px;
+    right: 0px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+}
+
+
+.article{
+    background-color: white;
+    border-bottom-right-radius: 20px;
+}
+
+.img {
+    width: 20%;
+    height: 10%;
+}
+
+.profilePicture {
+     margin-bottom:5px;
+     box-shadow:20px 20px 20px gray;
+     width: 70px;
+     height: 90px;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+}
+.titre_col{
+    text-align: center;
+    border-radius: 10px;
+    background-color: #AA1111;
+    padding: 2.5px;
+    color: #ecf0f1;
+    z-index: 2;
+    height: 40px;
+    padding-top: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
 .description{
     background-color: white;
     text-align: justify,
@@ -46,46 +130,6 @@ nav{
     padding-bottom: 50px;
     border-radius: 10px;
     margin-bottom: 20px;
-}
-.login{
-    background-color: white;
-    padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-.connectes{
-    background-color: white;
-    text-align: justify;
-    padding: 10px;
-    padding-bottom: 10px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-.titre_col{
-    text-align: center;
-    border-radius: 10px;
-    background-color: #BF0000;
-    height: 25px;
-    padding: 2.5px;
-    color: #ecf0f1;
-    z-index: 2;
-}
-.liste_connectes{
-    list-style-type: none;
-    text-align: center;
-    padding: inherit;
-}
-.slider{
-    margin-top: 10px;
-    width: 100%;
-}
-
-.recherche_membre{
-    padding-top: 15px;
-    border-radius: 10px;
-}
-.envoi_message{
-    padding-top: 10px;
 }
 .reseaux{
     background-color: white;
@@ -104,197 +148,154 @@ nav{
 }
 .twitter{
     padding-bottom: 5px;
-	
-}
-.news{
-    background-color: white;
-    padding: 10px;
-    padding-bottom: 10px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-.actu{
-    size= 10pt;
-}
-.recherche{
-    border-radius: 10px;
-    border-color: red;
-    padding-left: 10px;
-}
-.descriptionlan{
-    font-style: italic;
-    font-family: Century;
-    position: relative;
-    text-align: justify;
-}
-
-.titre_fofo{
-    color: red;
-    position: relative;
-    text-align: center;
-    top: 10px;
-}
-.article{
-    margin-top: 20px;
-    background-color: white;
-    border-radius: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width: 102%;
-}
-.gauche{
-    border-right: 2px solid black;
-	margin-right:50px;
-	margin-right:50px;
-}
-.padding-top{
-    margin-top: 20px;
-}
-
-footer{
-	background-color: #D20000;
-	font-size: 20px;
-	color: white;
-	text-decoration: none;
-	
-
-}
-
-footer a:link {color: white;}
-footer a:visited {color: white;}
-footer a:hover {color: white;}
-footer a:active {color: white;}
-
-
-.carousel-inner > .item > img,
-  .carousel-inner > .item > a > img {
-      width: auto;
-      margin: auto;
-/*      height:auto;*/
-  }
-.item{
-    display: inline;
-    width:100%;
-    height:370px;
-    margin: auto;
-    margin-top: auto;
-    margin-bottom: auto;
-    background-color: black;
-    vertical-align: middle;
-}
-.item img{
-   height:370px!important;
     
 }
 
-#user
-{
-    position: absolute;
-    top: -25px;
-    left: 1050px;
-    background-color: white;
-    width:100px;
-    height:100px;
-    border-radius: 50px;
+
+
+#nextPageButton {
+    background-color: #AA1111; 
+    margin-top: 2%; 
+    width: 10%; 
+    margin-left: 45%; 
 }
-        
-#user_img
-{
-    position: absolute;
-    top:0px;
-    right: 0px;
-    height: 100px;
-    width: 100px;
-    border-radius: 50px;
+
+#firstPage {
+    height: 100vh;
 }
-        
-#message_notifs
-{
-    position: relative;
-    bottom: 50px;
-    left:825px;
+
+#secondPage {
+    height: 80vh;
 }
-        
-#number_message
+
+/* 
+    --------------------
+        FOOTER STYLE
+    --------------------
+*/
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 15vh;
+  background-color: #AA1111;
+}
+
+footer,
+footer a,
+footer a:hover,
+footer a:visited {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+
+/* 
+    ----------------------
+        CAROUSEL STYLE
+    ----------------------
+*/
+
+/* Carousel base class */
+.carousel {
+  height: 80vh; 
+  margin-bottom: 60px;
+  margin: auto;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 80vh;
+  background-color: #777;
+}
+.carousel-inner > .item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 80vh;
+}
+
+/* CSS PERSONNALISE */
+#container-login
 {
-    position: absolute;
-    top: -12.5px;
-    left: 37.5px;
-    width: 25px;
-    height: 25px;
-    background-color: white;
+    display:flex;
+    height:80vh;
+    /*background-image: url("https://www.eicesi.fr/wp-content/uploads/2015/07/ecole-ingenieur-strasbourg.png");*/
+    background-image: url("http://commons.studyrama.com/data/bc2e/20952/photo_953.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80%;
+}
+
+.element
+{
+    margin:auto;
+    background-color: rgba(235, 235, 235,0.5);
+    height: 40%;
+    width: 20%;
+    border-radius: 10px;
+    padding: 3%;
+}
+
+.form
+{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.glyphicon-lock,
+.glyphicon-user {
+    color: #FFFFFF;
+    font-size: 2vh;
+}
+
+input
+{
+    border-radius: 10px;
     text-align: center;
-    color: red;
-    font-size: 18px;
+    border-style: none;
+    height: 3vh;
+    margin-top: auto;
+    margin-bottom: auto;
 }
-        
-#look_notifs
-{
-    position: absolute;
-    left: 75px;
+
+.loginForm {
+    margin-top: 2vh;
+    width: 15vw;
 }
-        
- #number_notifs
-{
-    position: absolute;
-    top: -12.5px;
-    left: 112.5px;
-    width: 25px;
-    height: 25px;
-    background-color: white;
+
+
+.description {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+.insetshadow {
     text-align: center;
-    color: red;
-    font-size: 18px;
-}
-        
-.autocomplete-suggestions { border: 1px solid #999; background: #f4eaea; overflow: auto; }
-.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
-.autocomplete-selected { background: #F0F0F0; }
-.autocomplete-suggestions strong { font-weight: normal; color: #f24b58; }
-
-.face{ 
-    height:300px;
-    overflow: hidden;
-    position: absolute;  
-    width: 302px;           
-}
-        
-.top{           
-    border: 1px solid;
-    top: 202px;
-    left: 602px; 
-    -webkit-transform: rotate(45deg) skew(-15deg, -15deg); <!-- Permet d'incliner div qui va permettre de faire l'effet 3D -->
-    -moz-transform: rotate(45deg) skew(-15deg, -15deg);     
-    transform: rotate(45deg) skew(-15deg, -15deg);
-}
-
-.left{
-    border: 1px solid;
-    top: 435px;
-    left: 468px;            
-    -webkit-transform: rotate(15deg) skew(15deg, 15deg);
-    -moz-transform: rotate(15deg) skew(15deg, 15deg);
-    transform: rotate(15deg) skew(15deg, 15deg);
-    margin-bottom: 20px;
-}
-
-.right{
-    border: 1px solid;
-    top: 435px;
-    left: 736px;            
-    -webkit-transform: rotate(-15deg) skew(-15deg, -15deg);
-    -moz-transform: rotate(-15deg) skew(-15deg, -15deg);   
-    transform: rotate(-15deg) skew(-15deg, -15deg); 
-}
-
-legend 
-{
-    text-align: center;
-}
-        
-#form
-{
-    position: absolute;
-    top: 500px;
-    left: 25px;
-}
+    font-size: 20px;
+    color: #FFFFFF;
+    background-color: #AA1111;
+    letter-spacing: .1em;
+    text-shadow: 
+      -1px -1px 1px #111, 
+      2px 2px 1px #363636;
+    border-radius: 10px;
+    padding: 2.5px;
+    height: 40px;
+    padding-top: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }

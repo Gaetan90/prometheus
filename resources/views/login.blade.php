@@ -1,39 +1,38 @@
 @extends('layouts.default')
 
 @section('contenu')
-    
-        <div class="container">
-            <center>
-               <div class="row">
-                    <div class="col-lg-offset-4 col-lg-4">
-                        <div class="login">
-                            {{ Form::open(array('route'=>'users.authenticate')) }}
+    <div id="container-login">
+        <div class="element">
+            
+            <img id="loginIcon" src="http://localhost/prometheus/public/img/icon.png" style="width: 100px; height: 100px;margin-top: -30%; margin-left: 35%">
+                   
+            <div class="form">
+                {{ Form::open(array('route'=>'users.authenticate')) }}
+                    
+                    <fieldset class="loginForm">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        <!-- <input type="text" name="pseudo" id="pseudo" placeholder="E-mail" size="20" maxlength="10" /> -->
+                        {{ Form::text('email', '', array('placeholder'=>'E-mail', 'style'=>'width:90%;height:4vh')) }}
+                    </fieldset>
 
-                                <!-- Login -->
-                                <div class="form-group">
-                                    {{ Form::label('email','E-mail :') }}
-                                    {{ Form::text('email') }}
-                                </div>
+                    <fieldset class="loginForm">
+                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                        <!-- <input type="text" name="pseudo" id="pseudo" placeholder="Password" size="20" maxlength="10" /> -->
+                        {{ Form::password('password', array('placeholder'=>'Mot de passe', 'style'=>'width:90%;height:4vh')) }}
+                    </fieldset>
 
-                                <!-- Mot de passe -->
-                                <div class="form-group">
-                                    {{ Form::label('password','Mot de passe :')}}                            
-                                    {{ Form::password('password')}}
-                                </div>
-                                
-                                <!-- Submit -->
-                                {{ Form::submit('Se connecter', array('class'=>'btn btn-primary')) }}
-
-                                @if(session('alert-fail'))                                    
-                                    <div class="alert alert-danger">
-                                        {{ session('alert-fail') }}
-                                    </div>
-                                @endif
-
-                            {{ Form::close() }}
+                    <!-- <button style="margin-top: 30px;" class="btn btn-default" type="submit">Connexion</button> -->
+                    {{ Form::submit('Se connecter', array('class'=>'btn btn-default', 'style'=>'margin-top:30px;width:100%; background-color: #AA1111;border-style:none;color:#FFFFFF;text-transform:uppercase;font-weight:bold;')) }}
+                    
+                    @if(session('alert-fail'))                                    
+                        <div class="alert alert-danger">
+                            {{ session('alert-fail') }}
                         </div>
-                    </div>
-               </div>
-           </center>
+                    @endif
+
+                {{ Form::close() }}
+            </div>
+            <p style="font-size: 20px; color:#AA1111; margin-left: -10%; margin-top: 10%;"><-- Accueil</p>
         </div>
+    </div>
 @stop
