@@ -76,36 +76,48 @@
           ##########         SECTION ON THE LEFT        ########## 
           ########################################################
     --> 
-    <section class="col-md-7">
-        <h4 class="insetshadow">Derniers article</h4>
-      
-        <div class="panel panel-default article">
-          <div class="panel-heading">Titre</div>
-          <div class="panel-body">
-            <a href="#"><img src="img/exialan.png" class="img"/></a>
-            Description
-          </div>
-        </div>
+   <section class="col-md-7">
+        <h4 class="insetshadow">Dernières news</h4>
+          
+        <?php
+        foreach($news as $new)
+        {
+            $date = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $new->created_at);
+            $date = $date->format('d/m/Y à H:i');
 
-        <div class="panel panel-default article">
-          <div class="panel-heading">
-            <h3 class="panel-title">Titre</h3>
-          </div>
+            $author = App\User::find($new->user_id);
 
-          <div class="panel-body">
-            <a href="#"><img src="img/exialan.png" class="img"/></a>
-            Description
-          </div>
-        </div>
+            if($new->img != NULL)
+            {
+              echo "<div class=\"panel panel-default article\">
+                          <div class=\"panel-heading\">".$new->title."</div>
+                          <div class=\"panel-body\">   
+                            <div class=\"row\">   
+                              <div class=\"col-lg-3\">                  
+                                  <img width=\"100%\" src=\"\prometheus/public/img/files/".$new->img."\" alt=\"Image de la news\" />
+                                </div>
 
-        <div class="panel panel-default article">
-          <div class="panel-heading">
-            <h3 class="panel-title">Titre</h3>
-          </div>
-          <div class="panel-body">
-            <a href="#"><img src="img/exialan.png" class="img"/></a>
-            Description
-          </div>
+                                <div class=\"col-lg-9\">
+                                  ".$new->text."
+                                </div>
+                              </div>
+                          </div>
+                          <div class=\"panel-footer\">Publié par ".$author->nom." ".$author->prenom." le ".$date."</div>
+                      </div>";
+            }
+
+            else
+            {
+              echo "  <div class=\"panel panel-default article\">
+                          <div class=\"panel-heading\">".$new->title."</div>
+                          <div class=\"panel-body\">                        
+                              ".$new->text."
+                          </div>
+                          <div class=\"panel-footer\">Publié par ".$author->nom." ".$author->prenom." le ".$date."</div>
+                      </div>";
+          }
+        }
+        ?>
     </section>   
 
     <!-- 

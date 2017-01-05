@@ -46,8 +46,8 @@
 						<ul class="nav navbar-nav">
 							<li><a href="{{ URL::route('users.index') }}">Accueil</a></li>
 							<li><a href="{{ URL::route('users.trombinoscope') }}">Trombinoscope</a></li>
-							<li><a href="#">News</a></li>
-							<li><a href="">Dictionnaire</a></li>
+							<li><a href="{{ URL::route('users.news') }}">News</a></li>
+							<li><a href="#">Dictionnaire</a></li>
 							<li><a href="{{ URL::route('users.parameters') }}">Paramètres</a></li>
 							<li><a href="#">Forum</a></li>
 							<li class="categorie"><a href="{{ URL::route('users.logout') }}"">Déconnexion</a></li>

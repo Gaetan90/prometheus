@@ -1,9 +1,9 @@
 <?php
 use App\Trombinoscope;
 
-if(!is_null($_GET['id_div']) && !is_null($_GET['position']) && $_GET['position'] >= 1 && $_GET['position'] <= 16)
+if(isset($_GET['id_div']) && isset($_GET['position']) && $_GET['position'] >= 1 && $_GET['position'] <= 16)
 {
-	$user = Trombinoscope::where('salle', '=', $_GET['id_div'])->where('position', '=', $_GET['position'])->join('users', 'trombinoscope.id', '=', 'users.id')->select('users.prenom', 'users.nom', 'trombinoscope.position')->first();
+	$user = Trombinoscope::where('salle', '=', $_GET['id_div'])->where('position', '=', $_GET['position'])->join('users', 'trombinoscope.user_id', '=', 'users.id')->select('users.prenom', 'users.nom', 'trombinoscope.position')->first();
 
 	if(!is_null($user))
 	{
