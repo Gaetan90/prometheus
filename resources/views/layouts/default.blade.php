@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="{{ asset('logo.png') }}">
     <!-- Bootstrap -->
     <link href="http://localhost/prometheus/public/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://localhost/prometheus/public/css/style.css" rel="stylesheet">
+    <link href="http://localhost/prometheus/public/css/style.css" rel="stylesheet">      
     @if(Route::currentRouteName() == 'users.trombinoscope')
 		<link href="http://localhost/prometheus/public/css/trombinoscope.css" rel="stylesheet">
 	@endif
@@ -28,6 +28,7 @@
 			<script type="text/javascript" src="http://localhost/prometheus/public/js/trombinoscope.js"></script>	
 		@endif
 		<script src="http://localhost/prometheus/public/js/bootstrap.min.js"></script>		
+        <script type="text/javascript" src="http://localhost/prometheus/public/js/popup.js"></script> 
 	</head>
 
 <body>

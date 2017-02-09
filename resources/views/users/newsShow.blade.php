@@ -17,11 +17,11 @@ if($news->count() >= 1)
         if($new->img != NULL)
         {
             echo "<div class=\"panel panel-default article\">
-                                <div class=\"panel-heading\">".$new->title."</div>
+                                <div class=\"panel-heading\">#".$new->id." ".$new->title."</div>
                                 <div class=\"panel-body\">   
                                     <div class=\"row\">   
                                         <div class=\"col-lg-3\">                  
-                                            <img width=\"100%\" src=\"\prometheus/public/img/files/".$new->img."\" alt=\"Image de la news\" />
+                                            <a href=\"\" rel=\"popup_img\" class=\"poplight\"><img width=\"100%\" src=\"\prometheus/public/img/files/".$new->img."\" alt=\"Image de la news\" /></a>
                                         </div>
 
                                         <div class=\"col-lg-9\">
@@ -30,13 +30,16 @@ if($news->count() >= 1)
                                     </div>
                                 </div>
                                 <div class=\"panel-footer\">Publié par ".$user->nom." ".$user->prenom." le ".$date."</div>
-                            </div>";
+                            </div>
+                            <div id=\"popup_img\" class=\"popup_block\">
+                                <img width=\"100%\" src=\"\prometheus/public/img/files/".$new->img."\" alt=\"Image de la news\" /><a href=\"\" class=\"close\">X</a>
+                            </div>";                                      
         }
 
         else
         {
             echo "  <div class=\"panel panel-default article\">
-                        <div class=\"panel-heading\">".$new->title."</div>
+                        <div class=\"panel-heading\">#".$new->id." ".$new->title."</div>
                         <div class=\"panel-body\">                        
                             ".$new->text."
                         </div>
