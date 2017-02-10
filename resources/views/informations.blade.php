@@ -1,12 +1,12 @@
 <?php
 use App\User;
 
-if(!is_null($_GET['nom']) && !is_null($_GET['prenom']))
+if(isset($_GET['nom']) && isset($_GET['prenom']))
 {
 	$nom = $_GET['nom'];
 	$prenom = $_GET['prenom'];
 
-	$infos_user = User::where('nom', '=', $nom)->where('prenom', '=', $prenom)->join('trombinoscope', 'users.id', '=', 'trombinoscope.id')->select('users.email', 'users.annee', 'trombinoscope.association', 'trombinoscope.infos')->first();
+	$infos_user = User::where('nom', '=', $nom)->where('prenom', '=', $prenom)->join('trombinoscope', 'users.id', '=', 'trombinoscope.user_id')->select('users.email', 'users.annee', 'trombinoscope.association', 'trombinoscope.infos')->first();
 
 	if(!is_null($infos_user))
 	{

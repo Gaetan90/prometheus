@@ -18,7 +18,9 @@ Route::get('/', function () {
 		return redirect()->route('index');
 	}
 
-    return view('index');
+	$news = App\News::orderBy('id', 'desc')->limit(3)->get();
+
+    return view('index')->with(['news'=>$news]);
 })->name('index');
 
 Route::get('users/login', 'UsersController@login')->name('users.login');
@@ -46,3 +48,10 @@ Route::get('users/trombinoscope/informations', function()
 })->name('users.trombinoscope.informations')->middleware('auth');
 Route::get('users/dictionary', 'DictionariesController@dictionary')->name('users.dictionary');
 Route::post('users/dictionary/validate', 'DictionariesController@valid')->name('users.dictionary.valid');
+
+Route::get('users/news', 'UsersController@news')->name('users.news')->middleware('auth');
+Route::post('users/news/post', 'UsersController@newsPost')->name('users.news.post')->middleware('auth', 'isPresident');
+Route::get('users/news/show', function()
+{
+	return view('users.newsShow');
+})->name('users.news.show')->middleware('auth');
