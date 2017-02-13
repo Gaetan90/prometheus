@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Validator;
 use App\News;
+use App\Notification;
+use App\Trombinoscope;
 
 class UsersController extends Controller
 {
@@ -62,12 +64,22 @@ class UsersController extends Controller
         $new_tel = $request->input('tel');
         $new_annee = $request->input('annee');
 
+        if(strlen($new_tel) != 10 || !ctype_digit($new_tel))
+        {
+            return redirect()->route('users.parameters')->with(['alert-error' => 'Numéro de téléphone incorrect.']);
+        }
+
+        if($new_annee < 1 || $new_annee > 5)
+        {
+            return redirect()->route('users.parameters')->with(['alert-error' => 'Année incorrecte.']);
+        }
+
         $user = Auth::user();
         $user->tel = $new_tel;
         $user->annee = $new_annee;
         $user->save();
 
-        return redirect()->route('users.parameters')->with('alert-success', 'Les modifications ont été prises en compte.');
+        return redirect()->route('users.parameters')->with('alert-success', 'Les modifications ont été pris en compte.');
     }
 
     public function trombinoscope()
@@ -157,6 +169,19 @@ class UsersController extends Controller
         $new->text = $text;
         $new->img = $nom;
         $new->save();
+
+        $association = Trombinoscope::where('user_id', $user->id)->select('association')->get();
+
+        $members_association = Trombinoscope::where('association', $association[0]->association)->get();
+
+        foreach($members_association as $member)
+        {
+            $notification = new Notification;
+            $notification->id_user = $user_id;
+            $notification->id_user_notify = $member->user_id;
+            $notification->text = "Votre président d'association a posté une news.";
+            $notification->save();
+        }
 
         return redirect()->route('users.news')->with(['user'=>$user, 'alert-success'=>'Votre news a bien été posté']);
     }

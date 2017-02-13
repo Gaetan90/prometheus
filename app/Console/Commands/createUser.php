@@ -19,7 +19,7 @@ class createUser extends Command
      *
      * @var string
      */
-    protected $description = 'Use to create a user';
+    protected $description = 'Used to create a user';
 
     protected $nom;
     protected $prenom;
@@ -47,7 +47,7 @@ class createUser extends Command
         $prenom = $this->ask('Entrez votre prenom ');
         $email = $this->ask('Entrez votre e-mail ');
         $password = bcrypt($this->secret('Entrez votre mot de passe '));
-        $sexe = $this->choice('Sexe ', ['Masculin', 'Féminin']);
+        $sexe = $this->choice('Sexe ', ['Masculin',  'Féminin']);
         $tel = $this->ask('Entrez votre numéro de téléphone ');
         $annee = $this->choice('Année ', ['1', '2', '3', '4', '5']);
 

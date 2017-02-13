@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Dictionaries extends Migration
+class CreateNotificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,13 @@ class Dictionaries extends Migration
      */
     public function up()
     {
-        Schema::create('dictionaries', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('title');
-            $table->text('definition');
-            $table->string('source');
-            $table->integer('id_user');
+        Schema::create('notifications', function (Blueprint $table) {
+            $table->increments('id')->unsigned();
+            $table->integer('id_user')->unsigned();
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
-            $table->boolean('validate');
-            $table->integer('id_category');
-            $table->foreign('id_category')->references('id')->on('categories')->onDelete('cascade');
+            $table->integer('id_user_notify')->unsigned();
+            $table->foreign('id_user_notify')->references('id')->on('users')->onDelete('cascade');
+            $table->string('text');
             $table->timestamps();
         });
 
@@ -36,7 +33,7 @@ class Dictionaries extends Migration
      */
     public function down()
     {
-        Schema::drop('dictionaries');
+        Schema::drop('notifications');
         Schema::disableForeignKeyConstraints();
     }
 }

@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class isPresident
+class isPrometheus
 {
     /**
      * Handle an incoming request.
@@ -16,13 +16,13 @@ class isPresident
      */
     public function handle($request, Closure $next)
     {
-        $presidents = array(1);
+        $members = array(1);
         $user_id = Auth::user()->id;
 
-        if(in_array($user_id, $presidents)) {
+        if(in_array($user_id, $members)) {
             return $next($request);
         }
 
-        return back()->with(['alert-droits'=>'Vous n\'avez pas les droits !']);
+        return redirect('users/dictionary')->with(['alert-droits'=>'Vous n\'avez pas les droits !']);    
     }
 }

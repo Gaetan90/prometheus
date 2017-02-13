@@ -46,8 +46,21 @@ Route::get('users/trombinoscope/informations', function()
 {
 	return view('informations');
 })->name('users.trombinoscope.informations')->middleware('auth');
-Route::get('users/dictionary', 'DictionariesController@dictionary')->name('users.dictionary');
-Route::post('users/dictionary/validate', 'DictionariesController@valid')->name('users.dictionary.valid');
+
+
+
+Route::get('users/dictionary', 'DictionariesController@dictionary')->name('users.dictionary')->middleware('auth');
+Route::post('users/dictionary/validate', 'DictionariesController@valid')->name('users.dictionary.valid')->middleware('auth');
+Route::get('users/dictionary/words', 'DictionariesController@words')->name('users.dictionary.words')->middleware('auth', 'isPrometheus');
+Route::get('users/dictionary/validWord/{idMot}','DictionariesController@validWord')->name('users.dictionary.validWord')->middleware('auth', 'isPrometheus');
+Route::get('users/dictionary/refusWord/{idMot}','DictionariesController@refusWord')->name('users.dictionary.refusWord')->middleware('auth', 'isPrometheus');
+Route::get('users/dictionary/allWords', 'DictionariesController@allWords')->name('users.dictionary.allWords')->middleware('auth');
+Route::get('users/dictionary/getWords', function()
+{
+	return view('getWords');
+})->name('users.dictionary.getWords')->middleware('auth');
+Route::get('users/dictionary/getWordDefinition/{idWord}', 'DictionariesController@getWordDefinition')->name('users.dictionary.getWordDefinition')->middleware('auth');
+
 
 Route::get('users/news', 'UsersController@news')->name('users.news')->middleware('auth');
 Route::post('users/news/post', 'UsersController@newsPost')->name('users.news.post')->middleware('auth', 'isPresident');

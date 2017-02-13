@@ -9,7 +9,7 @@
 		        <!-- Téléphone -->
 		        <div class="form-group">
 		            {{ Form::label('tel','Téléphone :') }}                            
-		            {{ Form::text('tel', '0'.$user->tel) }}
+		            {{ Form::text('tel', $user->tel) }}
 		        </div>
 
 		        <!-- Année -->
@@ -22,6 +22,14 @@
 		        <center>
 		        	{{ Form::submit('Modifier', array('class'=>'btn btn-primary')) }}
 		        </center>
+
+		        <br>
+
+		        @if(session('alert-error'))                                    
+	                <div class="alert alert-danger">
+	                    {{ session('alert-error') }}
+	                </div>
+	            @endif
 
 		        @if(session('alert-success'))                                    
 	                <div class="alert alert-success">
