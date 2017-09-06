@@ -45,7 +45,7 @@ class validateAccount extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.validateAccount')->to($this->user->email, $this->user->prenom)->from('huilierhugo@gmail.com', 'Prometheus')->subject('Welcome to Prometheus');
+        return $this->view('emails.validateAccount')->to($this->user->email, $this->user->prenom)->from('hugo.huilier@viacesi.fr', 'Prometheus')->subject('Welcome to Prometheus');
     }
 
     private function setTooken()

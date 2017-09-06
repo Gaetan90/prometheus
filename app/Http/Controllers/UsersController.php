@@ -233,7 +233,7 @@ class UsersController extends Controller
         $validator = Validator::make($request->all(), [
             'lastname' => 'required|min:2',
             'firstname' => 'required|min:2',
-            //'email' => array('required', 'email', 'regex:/.+@viacesi\.fr$/', 'unique:users,email'),
+            'email' => array('required', 'email', 'regex:/.+@viacesi\.fr$/', 'unique:users,email'),
             'password' => 'required|min:6|confirmed',
             'sexe' => 'required',
             'tel' => 'required|digits:10',
