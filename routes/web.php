@@ -23,6 +23,10 @@ Route::get('/', function () {
     return view('index')->with(['news'=>$news]);
 })->name('index');
 
+Route::get('users/register', 'UsersController@register')->name('users.register');
+Route::post('users/signUp', 'UsersController@signUp')->name('users.signUp');
+Route::get('users/validateAccount/{token}', 'UsersController@validateAccount')->name('users.validateAccount');
+
 Route::get('users/login', 'UsersController@login')->name('users.login');
 Route::post('users/authenticate', 'UsersController@authenticate')->name('users.authenticate');
 Route::get('users/index', 'UsersController@index')->name('users.index')->middleware('auth');
@@ -60,11 +64,18 @@ Route::get('users/dictionary/getWords', function()
 	return view('getWords');
 })->name('users.dictionary.getWords')->middleware('auth');
 Route::get('users/dictionary/getWordDefinition/{idWord}', 'DictionariesController@getWordDefinition')->name('users.dictionary.getWordDefinition')->middleware('auth');
+Route::get('users/dictionary/formEditWord/{idWord}', 'DictionariesController@formEditWord')->name('users.dictionary.formEditWord')->middleware('auth');
+Route::post('users/ditionary/editWord/{idWord}', 'DictionariesController@editWord')->name('users.dictionary.editWord')->middleware('auth');
 
 
-Route::get('users/news', 'UsersController@news')->name('users.news')->middleware('auth');
+Route::get('users/news/{page}', 'UsersController@news')->name('users.news')->middleware('auth');
 Route::post('users/news/post', 'UsersController@newsPost')->name('users.news.post')->middleware('auth', 'isPresident');
 Route::get('users/news/show', function()
 {
 	return view('users.newsShow');
 })->name('users.news.show')->middleware('auth');
+
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');

@@ -1,0 +1,12 @@
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` EVENT `Backup` 
+ON SCHEDULE EVERY 1 WEEK 
+STARTS CURRENT_DATE
+DO 
+BEGIN
+SET @sql_text = CONCAT ("SELECT * FROM categories INTO OUTFILE 'C:/wamp64/www/prometheus/database/save/test_", DATE_FORMAT( NOW(), '%Y%m%d'), ".txt'" );
+PREPARE s1 FROM @sql_text; 
+EXECUTE s1; 
+DEALLOCATE PREPARE s1;
+END $$
+DELIMITER ;

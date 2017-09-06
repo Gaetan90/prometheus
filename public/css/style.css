@@ -125,7 +125,7 @@ body {
 
 .description{
     background-color: white;
-    text-align: justify,
+    text-align: justify;
     padding: 10px;
     padding-bottom: 50px;
     border-radius: 10px;
@@ -140,8 +140,9 @@ body {
 }
 .liste_reseaux{
     list-style-type: none;
-    text-align: center;
     padding: inherit;
+    position: relative;
+    left: 7vw;
 }
 .facebook{
     padding-bottom: 5px;
@@ -345,4 +346,9 @@ position: absolute;
 }
 *html .popup_block {
 position: absolute;
+}
+
+.login
+{
+    margin: 4vh auto;
 }

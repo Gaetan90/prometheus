@@ -10,6 +10,9 @@
                     <footer>Source : <cite title="Source Title"><a href="//{{ $word[0]->source }}" style="color:blue;">{{ $word[0]->source}}</a></cite></footer>
                 @endif                                
             </blockquote>
+            @if($user->id == $word[0]->id_user)
+                <a href="{{ URL::route('users.dictionary.formEditWord', [$word[0]->id]) }}" class="btn btn-primary">Modifier</a>
+            @endif
         </div>
     </div>
 </div>

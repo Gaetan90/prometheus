@@ -15,8 +15,8 @@
 
                             <!-- Definition -->
                             <div class="form-group">
-                                {{ Form::label('definition','Definition :')}}                            
-                                {{ Form::textarea('definition')}}
+                                {{ Form::label('definition','Definition :')}}<br />                            
+                                {{ Form::textarea('definition', null, ['size' => '30x5'])}}
                             </div>
 
                             <!-- Source -->
@@ -28,7 +28,7 @@
                             <!-- Category -->
                             <div class="form-group">
                                 {{ Form::label('category','Catégorie :') }}
-                                {{ Form::select('category', $categories) }}
+                                {{ Form::select('category', $categories, Input::old('category')) }}
                             </div>
                         </div>
 

@@ -21,14 +21,22 @@
                         {{ Form::password('password', array('placeholder'=>'Mot de passe', 'style'=>'width:90%;height:4vh')) }}
                     </fieldset>
 
-                    <!-- <button style="margin-top: 30px;" class="btn btn-default" type="submit">Connexion</button> -->
-                    {{ Form::submit('Se connecter', array('class'=>'btn btn-default', 'style'=>'margin-top:30px;width:100%; background-color: #AA1111;border-style:none;color:#FFFFFF;text-transform:uppercase;font-weight:bold;')) }}
+                    <br />
                     
                     @if(session('alert-fail'))                                    
                         <div class="alert alert-danger">
                             {{ session('alert-fail') }}
                         </div>
                     @endif
+
+                    @if(session('accountNotValidated'))                                    
+                        <div class="alert alert-info">
+                            {{ session('accountNotValidated') }}
+                        </div>
+                    @endif
+
+                    <!-- <button style="margin-top: 30px;" class="btn btn-default" type="submit">Connexion</button> -->
+                    {{ Form::submit('Se connecter', array('class'=>'btn btn-default', 'style'=>'margin-top:30px;width:100%; background-color: #AA1111;border-style:none;color:#FFFFFF;text-transform:uppercase;font-weight:bold;')) }}
 
                 {{ Form::close() }}
             </div>

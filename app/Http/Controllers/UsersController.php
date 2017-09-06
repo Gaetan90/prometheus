@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Validator;
 use App\News;
 use App\Notification;
 use App\Trombinoscope;
+use App\User;
+use App\ValidateAccount;
 
 class UsersController extends Controller
 {
@@ -29,7 +32,17 @@ class UsersController extends Controller
 
     	if(Auth::attempt(['email' => $email, 'password' => $password], 1)) 
     	{        	
-            return redirect()->route('users.index');
+            $user = User::where('email', $email)->first();
+
+            if($user->isAccountValidated)
+            {
+                return redirect()->route('users.index');
+            }
+
+            else
+            {
+                return redirect('users/login')->with('accountNotValidated', 'Votre compte n\'est pas validé.');
+            }
         }
 
         else
@@ -89,12 +102,23 @@ class UsersController extends Controller
         return view('users.trombinoscope')->with(['user'=>$user]);
     }
 
-    public function news(Request $request)
+    public function news($page)
     {
+        $numberNews = News::count();
+        $newsPerPage = 3;
+        $maxPage = ceil($numberNews / $newsPerPage);        
+
+        if($page <= 0 || $page > $maxPage)
+        {
+            return redirect()->route('users.news', [1]);
+        }
+
+        $min = ($page -1) * $newsPerPage;
+
         $user = Auth::user();
-        $news = News::orderBy('id', 'desc')->get();
+        $news = News::orderBy('id', 'desc')->offset($min)->limit($newsPerPage)->get();
         
-        return view('users.news')->with(['user'=>$user, 'news'=>$news]);
+        return view('users.news')->with(['user'=>$user, 'news'=>$news, 'maxPage' => $maxPage, 'page' => $page]);
     }
 
     public function newsPost(Request $request)
@@ -112,7 +136,7 @@ class UsersController extends Controller
         ], $messages);
 
         if($validator->fails()) {
-            return redirect()->route('users.news')
+            return redirect()->route('users.news', [1])
                         ->with(['user'=>$user])
                         ->withErrors($validator)
                         ->withInput();
@@ -124,17 +148,17 @@ class UsersController extends Controller
         {
             if($_FILES['file']['error'] == UPLOAD_ERR_INI_SIZE || $_FILES['file']['error'] == UPLOAD_ERR_FORM_SIZE)
             { 
-                return redirect()->route('users.news')->with(['alert-error'=>'Fichier trop volumineux']);
+                return redirect()->route('users.news', [1])->with(['alert-error'=>'Fichier trop volumineux']);
             }
 
             if($_FILES['file']['size'] > $request->input('MAX_FILE_SIZE'))
             {
-                return redirect()->route('users.news')->with(['alert-error'=>'Fichier trop volumineux']);
+                return redirect()->route('users.news', [1])->with(['alert-error'=>'Fichier trop volumineux']);
             }
 
             if($_FILES['file']['error'] == UPLOAD_ERR_PARTIAL)
             {
-                return redirect()->route('users.news')->with(['alert-error'=>'Fichier transféré partiellement']);
+                return redirect()->route('users.news', [1])->with(['alert-error'=>'Fichier transféré partiellement']);
             }
 
             $extensions_valides = array('jpg','jpeg','gif','png');
@@ -142,7 +166,7 @@ class UsersController extends Controller
 
             if(!in_array($extension_upload,$extensions_valides))
             {
-                return redirect()->route('users.news')->with(['alert-error'=>'Extension du fichier non valide']);
+                return redirect()->route('users.news', [1])->with(['alert-error'=>'Extension du fichier non valide']);
             }
 
             $nbrNews = News::all()->count();
@@ -183,6 +207,93 @@ class UsersController extends Controller
             $notification->save();
         }
 
-        return redirect()->route('users.news')->with(['user'=>$user, 'alert-success'=>'Votre news a bien été posté']);
+        return redirect()->route('users.news', [1])->with(['user'=>$user, 'alert-success'=>'Votre news a bien été posté']);
+    }
+
+    public function register()
+    {
+        return view('register');
+    }
+
+    public function signUp(Request $request)
+    {
+        $messages = [
+                        'required'    => 'Ce champ est requis !',
+                        'lastname.min' => 'Ce champ doit compter au moins 2 caractère !',
+                        'firstname.min' => 'Ce champ doit compter au moins 2 caractères !',
+                        'password.min' => 'Le mot de passe doit être composé de 6 caractères minimum',
+                        'password.confirmed' => 'Les mots de passe sont différents',
+                        'year.min' => 'L\'année doit être comprise entre 1 et 5',
+                        'year.max' => 'L\'année doit être comprise entre 1 et 5',
+                        'email.regex' => 'L\'adresse mail doit finir par @viacesi.fr',
+                        'email.unique' => 'Votre adresse mail est déjà utilisée',
+                        'tel.digits' => 'Le numéro de téléphone doit être composé de 10 chiffres'
+                    ];
+
+        $validator = Validator::make($request->all(), [
+            'lastname' => 'required|min:2',
+            'firstname' => 'required|min:2',
+            //'email' => array('required', 'email', 'regex:/.+@viacesi\.fr$/', 'unique:users,email'),
+            'password' => 'required|min:6|confirmed',
+            'sexe' => 'required',
+            'tel' => 'required|digits:10',
+            'year' => 'required|min:1|max:5',
+        ], $messages);
+
+        if($validator->fails()) {
+            return redirect()->route('users.register')                        
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        $lastname = $request->input('lastname');
+        $firstname = $request->input('firstname');
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $passwordConfirmation = $request->input('password_confirmation');
+        $sexe = $request->input('sexe');
+        $tel = $request->input('tel');
+        $year = $request->input('year');
+
+        $isAlreadyRegistered = User::where('nom', $lastname)->where('prenom', $firstname)->count();
+
+        if($isAlreadyRegistered == 0)
+        {
+            $user = new User;
+            $user->nom = $lastname;
+            $user->prenom = $firstname;
+            $user->email = $email;
+            $user->password = bcrypt($password);
+            $user->sexe = $sexe;
+            $user->tel = $tel;
+            $user->annee = $year;
+            $user->isAccountValidated = false;
+            $user->save();
+
+            Mail::send(new \App\Mail\validateAccount($user));
+
+            return redirect()->route('users.register')->with(['alert-success' => 'Afin de valider votre compte, un e-mail vous a été envoyé.']);
+        }
+
+        else
+        {
+            return redirect()->route('users.register')->with(['error-name' => 'Vous avez déjà un compte.'])->withInput();
+        }
+    }
+
+    public function validateAccount($token)
+    {
+        $hasOne = ValidateAccount::where('remember_token', $token)->get();
+
+        if($hasOne->count() == 1)
+        {
+            $user_id = $hasOne[0]->user_id;
+
+            $user = User::find($user_id);
+            $user->isAccountValidated = true;
+            $user->save();
+        }
+
+        return redirect()->route('index');
     }
 }

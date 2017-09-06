@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -55,10 +55,7 @@ return [
     |
     */
 
-    'from' => [
-        'address' => 'prometheus@viacesi.fr',
-        'name' => 'Prometheus',
-    ],
+    'from' => env('MAIL_USERNAME'),
 
     /*
     |--------------------------------------------------------------------------
@@ -111,5 +108,7 @@ return [
     */
 
     'sendmail' => '/usr/sbin/sendmail -bs',
+
+    'pretend' => env('MAIL_PRETEND', false),
 
 ];

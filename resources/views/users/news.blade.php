@@ -21,7 +21,7 @@
 
                 <br>
 
-                {{ Form::submit('Poster', array('class'=>'btn btn-danger', 'disabled'=>'true')) }}
+                {{ Form::submit('Poster', array('class'=>'btn-danger', 'style' => 'display: block; margin: auto;', 'disabled'=>'true')) }}
 
             {{ Form::close() }}
 
@@ -93,7 +93,17 @@
 		    }
 		   	?>
 		    </div>
-		</section>   
+		    <center>
+		    	@for($i=1;$i<=$maxPage;$i++)
+		    		@if($i == $page)
+		    			[ {{ $i }} ]
+		    		@else
+		    			<a href="{{ URL::route('users.news', [$i]) }}">{{ $i }}</a>
+		    		@endif		    		
+		    	@endfor
+		    </center>
+		    <br>
+		</section>  		
 	</div>
 </div>
 
@@ -116,12 +126,12 @@ $(function()
 		}	
 	}, 500);	
 
-	setInterval(function()
+	/*setInterval(function()
 	{
 		$.get('news/show', function(data){
 			$('.news').html(data);					
 		});
-	}, 5000);
+	}, 5000);*/
 });
 </script>
 @stop

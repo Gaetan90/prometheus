@@ -47,10 +47,17 @@
 						<ul class="nav navbar-nav">
 							<li><a href="{{ URL::route('users.index') }}">Accueil</a></li>
 							<li><a href="{{ URL::route('users.trombinoscope') }}">Trombinoscope</a></li>
-							<li><a href="{{ URL::route('users.news') }}">News</a></li>
-							<li><a href="{{ URL::route('users.dictionary') }}">Dictionnaire</a></li>
+							<li><a href="{{ URL::route('users.news', [1]) }}">News</a></li>
+							<li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="">Dictionnaire &nbsp<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ URL::route('users.dictionary') }}">Ajouter un mot clé</a></li>
+                                    @if($isPrometheus)
+                                        <li><a href="{{ URL::route('users.dictionary.words') }}">Liste des mots clés à valider</a></li>
+                                    @endif
+                                </ul>
+                            </li>
 							<li><a href="{{ URL::route('users.parameters') }}">Paramètres</a></li>
-							<li><a href="#">Forum</a></li>
 							<li class="categorie"><a href="{{ URL::route('users.logout') }}"">Déconnexion</a></li>
 						</ul>
 									
@@ -59,7 +66,7 @@
 						</div>
 					@else								
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="#">Inscription</a></li>
+							<li><a href="{{ URL::route('users.register') }}">Inscription</a></li>
 							<li class="categorie"><a href="{{ URL::route('users.login') }}">Se connecter</a></li>
 						</ul>
 					@endif

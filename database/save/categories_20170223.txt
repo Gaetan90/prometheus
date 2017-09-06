@@ -1,0 +1,9 @@
+1	A1	0
+2	A2	0
+3	A3	0
+4	sous_cat1	1
+5	sous_cat2	1
+6	sous_cat3	2
+7	sous_cat4	2
+8	sous_cat5	3
+9	sous_cat6	3
