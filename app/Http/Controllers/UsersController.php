@@ -12,6 +12,7 @@ use App\Notification;
 use App\Trombinoscope;
 use App\User;
 use App\ValidateAccount;
+use App\ResetPassword;
 
 class UsersController extends Controller
 {
@@ -74,25 +75,44 @@ class UsersController extends Controller
 
     public function parametersEdit(Request $request)
     {
+        $messages = [
+                        'required'    => 'Ce champ est requis !',                       
+                        'password.min' => 'Le mot de passe doit être composé de 6 caractères minimum',
+                        'password.confirmed' => 'Les mots de passe sont différents',
+                        'year.min' => 'L\'année doit être comprise entre 1 et 5',
+                        'year.max' => 'L\'année doit être comprise entre 1 et 5',
+                        'tel.digits' => 'Le numéro de téléphone doit être composé de 10 chiffres'
+                    ];
+
+        $validator = Validator::make($request->all(), [            
+            'password' => 'min:6|confirmed',
+            'tel' => 'required|digits:10',
+            'year' => 'required|min:1|max:5',
+        ], $messages);
+
+        if($validator->fails()) {
+            return redirect()->route('users.parameters')                        
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         $new_tel = $request->input('tel');
-        $new_annee = $request->input('annee');
-
-        if(strlen($new_tel) != 10 || !ctype_digit($new_tel))
-        {
-            return redirect()->route('users.parameters')->with(['alert-error' => 'Numéro de téléphone incorrect.']);
-        }
-
-        if($new_annee < 1 || $new_annee > 5)
-        {
-            return redirect()->route('users.parameters')->with(['alert-error' => 'Année incorrecte.']);
-        }
+        $new_annee = $request->input('year');
+        $password = $request->input('password');
 
         $user = Auth::user();
         $user->tel = $new_tel;
         $user->annee = $new_annee;
         $user->save();
 
-        return redirect()->route('users.parameters')->with('alert-success', 'Les modifications ont été pris en compte.');
+        if($password != "")
+        {
+            Mail::send(new \App\Mail\changePassword($user, $password));
+
+            return redirect()->route('users.parameters')->with('alert-success', 'Les modifications ont été prises en compte. Pour le changement de mot de passe, un mail vous a été envoyé afin de confirmer le changement.');
+        }
+
+        return redirect()->route('users.parameters')->with('alert-success', 'Les modifications ont été prises en compte.');
     }
 
     public function trombinoscope()
@@ -113,7 +133,7 @@ class UsersController extends Controller
             return redirect()->route('users.news', [1]);
         }
 
-        $min = ($page -1) * $newsPerPage;
+        $min = ($page - 1) * $newsPerPage;
 
         $user = Auth::user();
         $news = News::orderBy('id', 'desc')->offset($min)->limit($newsPerPage)->get();
@@ -249,8 +269,7 @@ class UsersController extends Controller
         $lastname = $request->input('lastname');
         $firstname = $request->input('firstname');
         $email = $request->input('email');
-        $password = $request->input('password');
-        $passwordConfirmation = $request->input('password_confirmation');
+        $password = $request->input('password');        
         $sexe = $request->input('sexe');
         $tel = $request->input('tel');
         $year = $request->input('year');
@@ -294,6 +313,122 @@ class UsersController extends Controller
             $user->save();
         }
 
+        ValidateAccount::where('remember_token', $token)->delete();
+
         return redirect()->route('index');
+    }
+
+    public function changePassword($token)
+    {
+        $hasOne = ResetPassword::where('remember_token', $token)->get();
+
+        if($hasOne->count() == 1)
+        {
+            $user_id = $hasOne[0]->user_id;
+
+            $user = User::find($user_id);
+            $user->password = $hasOne[0]->password;
+            $user->save();
+        }
+
+        ResetPassword::where('remember_token', $token)->delete();
+
+        return redirect()->route('index');
+    }
+
+    public function askResetPassword()
+    {
+        return view('askResetPassword');
+    }
+
+    public function askResetPasswordPost(Request $request)
+    {
+        $messages = [
+                        'required'    => 'Ce champ est requis !',
+                        'lastname.min' => 'Ce champ doit compter au moins 2 caractère !',
+                        'firstname.min' => 'Ce champ doit compter au moins 2 caractères !',                        
+                    ];
+
+        $validator = Validator::make($request->all(), [
+            'lastname' => 'required|min:2',
+            'firstname' => 'required|min:2',           
+        ], $messages);
+
+        if($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $lastname = $request->input('lastname');
+        $firstname = $request->input('firstname');
+
+        $user = User::where('nom', $lastname)->where('prenom', $firstname)->first();
+
+        if(isset($user))
+        {
+            Mail::send(new \App\Mail\resetPassword($user));
+
+            return back()->with(['alert-success' => 'Un mail vous a été envoyé pour changer votre mot de passe.']);
+        }
+
+        else
+        {
+            return back()->withInput()->with(['account-error' => 'Aucun compte trouvé']);
+        }
+    }
+
+    public function resetPassword($token)
+    {
+        $hasOne = ResetPassword::where('remember_token', $token)->get();
+
+        if($hasOne->count() == 1)
+        {
+            $user_id = $hasOne[0]->user_id;
+
+            return view('resetPassword')->with(['token' => $token]);
+        }
+
+        else
+        {
+            return redirect()->route('index');
+        }
+    }
+
+    public function resetPasswordPost(Request $request, $token)
+    {
+        $messages = [
+                        'required'    => 'Ce champ est requis !',                        
+                        'password.min' => 'Le mot de passe doit être composé de 6 caractères minimum',
+                        'password.confirmed' => 'Les mots de passe sont différents',                        
+                    ];
+
+        $validator = Validator::make($request->all(), [           
+            'password' => 'required|min:6|confirmed',
+        ], $messages);
+
+        if($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $password = $request->input('password');
+
+        $hasOne = ResetPassword::where('remember_token', $token)->get();
+
+        if($hasOne->count() == 1)
+        {
+            $user_id = $hasOne[0]->user_id;
+
+            $user = User::find($user_id);
+            $user->password = bcrypt($password);
+            $user->save();
+
+            ResetPassword::where('remember_token', $token)->delete();
+
+            return redirect()->route('index')->with(['alert-success-password' => 'Votre mot de passe a bien été changé.']);
+        }
+
+        else
+        {
+            return redirect()->route('index');
+        }
     }
 }

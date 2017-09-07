@@ -8,9 +8,9 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Password;
 use App\User;
-use App\ValidateAccount as Token;
+use App\ResetPassword as reset;
 
-class validateAccount extends Mailable
+class resetPassword extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -20,6 +20,7 @@ class validateAccount extends Mailable
      * @var user
      */
     public $user;
+
     /**
      * The token generated and used to validate the user account
      *
@@ -46,14 +47,15 @@ class validateAccount extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.validateAccount')->to($this->user->email, $this->user->prenom)->from('hugo.huilier@viacesi.fr', 'Prometheus')->subject('[PROMETHEUS] Bienvenue sur Prometheus');
+        return $this->view('emails.resetPassword')->to($this->user->email, $this->user->prenom)->from('hugo.huilier@viacesi.fr', 'Prometheus')->subject('[PROMETHEUS] Mot de passe oublié');
     }
 
     private function insert()
     {
-        $validateAccount = new Token;
-        $validateAccount->user_id = $this->user->id;
-        $validateAccount->remember_token = $this->token;
-        $validateAccount->save();
+        $resetPassword = new Reset;
+        $resetPassword->user_id = $this->user->id;
+        $resetPassword->remember_token = $this->token;
+        $resetPassword->password = "";
+        $resetPassword->save();
     }
 }

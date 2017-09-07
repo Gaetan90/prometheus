@@ -22,6 +22,10 @@
                     </fieldset>
 
                     <br />
+
+                    <a href="{{ URL::route('users.askResetPassword') }}">Mot de passe oublié ?</a>
+
+                    <br />
                     
                     @if(session('alert-fail'))                                    
                         <div class="alert alert-danger">

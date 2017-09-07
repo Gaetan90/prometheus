@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Welcome to Prometheus</title>
+	<title>Bienvenue sur Prometheus</title>
 </head>
 <body>
 	Félicitations, votre compte a été créé. Il reste cependant une dernière étape.<br />

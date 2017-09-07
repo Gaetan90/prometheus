@@ -3,32 +3,8 @@
 @section('contenu')
 <div class="container">
 	<div class="row">
-		<div class="col-lg-4 col-lg-offset-4 login">
-			{{ Form::model($user, ['route' => 'users.parameters.edit']) }}
-
-		        <!-- Téléphone -->
-		        <div class="form-group">
-		            {{ Form::label('tel','Téléphone :') }}                            
-		            {{ Form::text('tel', $user->tel) }}
-		        </div>
-
-		        @if($errors->has('tel'))                               
-                        <div class="alert alert-danger">
-                            {{ $errors->first('tel') }}
-                        </div>
-                    @endif
-
-		        <!-- Année -->
-		        <div class="form-group">
-		            {{ Form::label('year','Année :') }}  
-		            {{ Form::select('year', [1=>'A1', 2=>'A2', 3=>'A3', 4=>'A4', 5=>'A5'], $user->annee) }}                          
-		        </div>
-
-		        @if($errors->has('year'))                               
-                    <div class="alert alert-danger">
-                        {{ $errors->first('year') }}
-                    </div>
-                @endif	
+		<div class="col-lg-4 col-lg-offselt-4 ogin">
+			{{ Form::open(array('route' => array('users.resetPasswordPost', $token))) }}
 
 		        <!-- Mot de passe -->
 		        <div class="form-group">
@@ -61,6 +37,8 @@
 	            @endif
 
 			{{ Form::close() }}
+
+			<a href="{{ URL::route('index') }}">Retourner à l'accueil</a>
 		</div>
 	</div>
 </div>

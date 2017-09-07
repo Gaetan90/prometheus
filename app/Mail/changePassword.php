@@ -8,9 +8,9 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Password;
 use App\User;
-use App\ValidateAccount as Token;
+use App\ResetPassword;
 
-class validateAccount extends Mailable
+class changePassword extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -20,6 +20,7 @@ class validateAccount extends Mailable
      * @var user
      */
     public $user;
+
     /**
      * The token generated and used to validate the user account
      *
@@ -28,13 +29,21 @@ class validateAccount extends Mailable
     public $token;
 
     /**
+     * The new password
+     *
+     * @var password
+     */
+    public $password;
+
+    /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(User $user, $password)
     {
         $this->user = $user;
+        $this->password = bcrypt($password);
         $this->token = Password::getRepository()->createNewToken();
         $this->insert();
     }
@@ -46,14 +55,15 @@ class validateAccount extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.validateAccount')->to($this->user->email, $this->user->prenom)->from('hugo.huilier@viacesi.fr', 'Prometheus')->subject('[PROMETHEUS] Bienvenue sur Prometheus');
+        return $this->view('emails.changePassword')->to($this->user->email, $this->user->prenom)->from('hugo.huilier@viacesi.fr', 'Prometheus')->subject('[PROMETHEUS] Changement de mot de passe');
     }
 
     private function insert()
     {
-        $validateAccount = new Token;
-        $validateAccount->user_id = $this->user->id;
-        $validateAccount->remember_token = $this->token;
-        $validateAccount->save();
+        $resetPassword = new ResetPassword;
+        $resetPassword->user_id = $this->user->id;
+        $resetPassword->remember_token = $this->token;
+        $resetPassword->password = $this->password;
+        $resetPassword->save();
     }
 }
