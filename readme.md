@@ -34,21 +34,24 @@ cp .env.example .env
 ```
 <br>
 
-5) Ouvrir le fichier .env et changer les informations suivantes:
+5) Générer la clé d'application
+```
+php artisan key:generate
+```
+<br>
+
+6) Ouvrir le fichier .env et changer les informations suivantes:
 > DB_DATABASE : correspond au nom de la base de donnée <br>
 > DB_USERNAME : nom d'utilisateur pour accéder à la BDD <br>
 > DB_PASSWORD : mot de passe pour accéder à la BDD <br>
 
-6) Mettre à jour la BDD
+<br>
+
+7) Mettre à jour la BDD
 ```
 php artisan migrate
 ```
 <br>
 
-6) Générer la clé d'application
-```
-php artisan key:generate
-```
-<br>
 
 
