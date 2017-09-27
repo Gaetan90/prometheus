@@ -1,27 +1,46 @@
-# Laravel PHP Framework
+# Website Prometheus
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+## Prérequis: 
+  - Installer composer: https://getcomposer.org/download/
+  - Installer Git: https://git-scm.com/
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+## Installer le projet en local
+1) Cloner le projet à l'aide de la commande suivante
+```
+git clone https://github.com/EmreSuzenExia/Prometheus.git
+```
 
-## Official Documentation
+2) Se placer dans le répertoir du projet en utilisant la commande 'cd'. Par exemple :
+```
+cd c://wamp64/www/prometheus
+```
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+3) Installer les dépendances PHP
+```
+composer install
+```
 
-## Contributing
+4) Copier le fichier .env.example 
+```
+Sous windows
+copy .env.example .env
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+Sous linux
+cp .env.example .env
+```
 
-## Security Vulnerabilities
+5) Ouvrir le fichier .env et changer les informations suivantes:
+> DB_DATABASE : correspond au nom de la base de donnée
+> DB_USERNAME : nom d'utilisateur pour accéder à la BDD
+> DB_PASSWORD : mot de passe pour accéder à la BDD
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+6) Mettre à jour la BDD
+```
+php artisan migrate
+```
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+6) Générer la clé d'application
+```
+php artisan key:generate
+```
