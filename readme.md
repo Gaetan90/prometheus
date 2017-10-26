@@ -8,7 +8,7 @@
 ## Installer le projet en local
 1) Cloner le projet à l'aide de la commande suivante
 ```
-git clone https://github.com/EmreSuzenExia/Prometheus.git
+git clone https://github.com/EmreSuzen/Prometheus.git
 ```
 <br>
 
