@@ -1,3 +1,7 @@
+<!--
+  Page d'entrée de l'application
+-->
+
 @extends('layouts.default')
 
 @section('contenu')
@@ -6,12 +10,6 @@
       @if(session('alert-success'))                                    
         <div class="alert alert-success">
           {{ session('alert-success') }}
-        </div>
-      @endif
-
-      @if(session('alert-success-password'))                                    
-        <div class="alert alert-success">
-          {{ session('alert-success-password') }}
         </div>
       @endif
 
@@ -68,12 +66,6 @@
         </a>
       </div><!-- /.carousel -->
 
-      <!-- NEXT PAGE BUTTON -->
-      <div class="row">
-        <button id="nextPageButton" type="button" class="js-scrollTo btn btn-default btn-lg" href="#secondPage">
-          <span class="glyphicon glyphicon-menu-down" aria-hidden="true" style="color: white;"></span> 
-        </button> 
-      </div>
     </div>
 
   <div class="row" id="secondPage">

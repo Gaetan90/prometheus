@@ -81,7 +81,7 @@
                     @endif
 
                     @if(session('alert-success'))                                    
-                        <div class="alert alert-info">
+                        <div class="alert alert-success">
                             {{ session('alert-success') }}
                         </div>
                     @endif
