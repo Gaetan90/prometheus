@@ -1,38 +1,65 @@
 @extends('layouts.default')
 
 @section('contenu')
-    <div id="container-login">
-        <div class="element">
-            
-            <img id="loginIcon" src="http://localhost/prometheus/public/img/icon.png" style="width: 100px; height: 100px;margin-top: -30%; margin-left: 35%">
-                   
-            <div class="form">
-                {{ Form::open(array('route'=>'users.authenticate')) }}
-                    
-                    <fieldset class="loginForm">
-                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                        <!-- <input type="text" name="pseudo" id="pseudo" placeholder="E-mail" size="20" maxlength="10" /> -->
-                        {{ Form::text('email', '', array('placeholder'=>'E-mail', 'style'=>'width:90%;height:4vh')) }}
-                    </fieldset>
+		<div class="row main">
+				<div class="panel-heading">
+	               <div class="panel-title text-center">
+	               		<h1 class="title">Connexion à l'espace membre</h1>
 
-                    <fieldset class="loginForm">
-                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-                        <!-- <input type="text" name="pseudo" id="pseudo" placeholder="Password" size="20" maxlength="10" /> -->
-                        {{ Form::password('password', array('placeholder'=>'Mot de passe', 'style'=>'width:90%;height:4vh')) }}
-                    </fieldset>
+	               		<hr />
 
-                    <!-- <button style="margin-top: 30px;" class="btn btn-default" type="submit">Connexion</button> -->
-                    {{ Form::submit('Se connecter', array('class'=>'btn btn-default', 'style'=>'margin-top:30px;width:100%; background-color: #AA1111;border-style:none;color:#FFFFFF;text-transform:uppercase;font-weight:bold;')) }}
-                    
-                    @if(session('alert-fail'))                                    
+            		<img id="loginIcon" src="http://localhost/prometheus/public/img/icon.png" style="width: 100px; height: 100px;">
+	               	</div>
+	            </div> 
+				<div class="main-center">
+					 <div class="form">
+                		{{ Form::open(array('route'=>'users.authenticate')) }}
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Email</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+									
+									{{ Form::text('email', '', array('placeholder'=>'E-mail', 'class'=>'form-control')) }}
+								</div>
+							</div>
+						</div>
+
+					
+						<div class="form-group">
+							<label for="password" class="cols-sm-2 control-label">Mot de passe</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon">
+                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
+									{{ Form::password('password', array('type'=>'button', 'placeholder'=>'Mot de passe', 'class'=>'form-control')) }}
+								</div>
+							</div>
+						</div>
+
+
+
+						<div class="form-group ">
+							
+						{{ Form::button('Se connecter', array('type'=>'submit','class'=>'btn btn-primary btn-lg btn-block login-button')) }}
+						</div>
+
+						                    @if(session('alert-fail'))                                    
                         <div class="alert alert-danger">
                             {{ session('alert-fail') }}
                         </div>
                     @endif
 
-                {{ Form::close() }}
-            </div>
-            <!-- <p style="font-size: 20px; color:#AA1111; margin-left: -10%; margin-top: 10%;"><-- Accueil</p> -->
-        </div>
-    </div>
+                    @if(session('accountNotValidated'))                                    
+                        <div class="alert alert-info">
+                            {{ session('accountNotValidated') }}
+                        </div>
+                    @endif
+{{ Form::close() }}
+					</div>
+				</div>
+			</div>
+
+    
 @stop

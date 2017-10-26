@@ -5,19 +5,22 @@
 @extends('layouts.default')
 
 @section('contenu')
-  <div class="container">
-    <div class="row" id="firstPage">
-      @if(session('alert-success'))                                    
-        <div class="alert alert-success">
-          {{ session('alert-success') }}
-        </div>
-      @endif
+  <div class="row ">
+    @if(session('alert-success'))                                    
+      <div class="alert alert-success">
+        {{ session('alert-success') }}
+      </div>
+    @endif
 
-      @if(session('alert-error'))                                    
-        <div class="alert alert-danger">
-          {{ session('alert-error') }}
-        </div>
-      @endif
+    @if(session('alert-error'))                                    
+      <div class="alert alert-danger">
+        {{ session('alert-error') }}
+      </div>
+    @endif
+     
+
+ 
+    <section class="col-md-8"> 
       <!-- 
           ################################################
           ##########          CAROUSEL          ########## 
@@ -65,16 +68,23 @@
           <span class="sr-only">Next</span>
         </a>
       </div><!-- /.carousel -->
+    </section>
 
-    </div>
+    <section id="equipe" class="col-md-3 col-md-offset-1">
+      <h4 class="insetshadow">L'équipe Prometheus</h4>
+      <div class="description">             
+        <img src="img/Photos/Mélanie_Gstalter.jpg" class="img-thumbnail profilePicture">      
+        <img src="img/Photos/Hugo_Huilier.jpg" class="img-thumbnail profilePicture">
+        <img src="img/Photos/Mathieu_Menu.jpg" class="img-thumbnail profilePicture">
+        <img src="img/Photos/Julie_Meyer.jpg" class="img-thumbnail profilePicture">
+        <img src="img/Photos/François_Schaefer.jpg" class="img-thumbnail profilePicture">
+        <img src="img/Photos/Emre_Suzen.jpg" class="img-thumbnail profilePicture">
+      </div>
+    </section>
+  </div>
 
-  <div class="row" id="secondPage">
-    <!-- 
-          ########################################################
-          ##########         SECTION ON THE LEFT        ########## 
-          ########################################################
-    --> 
-   <section class="col-md-7">
+  <div class="row top-space">
+    <section id="news" class="col-md-8">
         <h4 class="insetshadow">Dernières news</h4>
           
         <?php
@@ -121,26 +131,9 @@
         ?>
     </section>   
 
-    <!-- 
-          #########################################################
-          ##########         SECTION ON THE RIGHT        ########## 
-          #########################################################
-    -->  
-    <section class="col-md-4 col-md-offset-1">
-       
-      <!-- OUR STAFF -->
-      <h4 class="insetshadow">L'équipe Prometheus</h4>
-      <div class="description">             
-        <img src="img/Photos/Mélanie_Gstalter.jpg" class="img-thumbnail profilePicture">      
-        <img src="img/Photos/Hugo_Huilier.jpg" class="img-thumbnail profilePicture">
-        <!--<img src="img/Photos/Victor_Losser.jpg" class="img-thumbnail profilePicture"> -->
-        <img src="img/Photos/Mathieu_Menu.jpg" class="img-thumbnail profilePicture">
-        <img src="img/Photos/Julie_Meyer.jpg" class="img-thumbnail profilePicture">
-        <img src="img/Photos/François_Schaefer.jpg" class="img-thumbnail profilePicture">
-        <img src="img/Photos/Emre_Suzen.jpg" class="img-thumbnail profilePicture">
-      </div>
-        
-      
+    
+
+    <section id="socialNetworks" class="col-md-3 col-md-offset-1">
       <!-- SOCIAL NETWORKS -->          
       <h4 class="insetshadow">Réseaux sociaux</h4>
       <div class="reseaux">
@@ -162,8 +155,6 @@
       </div>
     </section>
   </div>
-</div>
-
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript">

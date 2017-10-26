@@ -1,0 +1,46 @@
+/*
+     ===========================
+    |                           |
+    |    REGISTER PAGE STYLE    |
+    |                           |
+     ===========================
+ */
+
+body, html{
+ 	background-repeat: no-repeat;
+ 	font-family: 'Oxygen', sans-serif;
+}
+
+
+h1.title { 
+	font-size: 50px;
+	font-family: 'Passion One', cursive; 
+	font-weight: 400; 
+}
+
+
+input,
+input::-webkit-input-placeholder {
+    font-size: 11px;
+}
+
+.main-center{
+    background-color: #fff;
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+ 	margin: 0 auto;
+ 	max-width: 330px;
+    padding: 20px 40px;
+
+}
+
+.register-button{
+    margin-top: 5px;
+    background-color: #c2242a;
+    border: none;
+}

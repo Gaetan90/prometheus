@@ -8,7 +8,16 @@
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
 
+<<<<<<< HEAD
 Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+=======
+## Installer le projet en local
+1) Cloner le projet à l'aide de la commande suivante
+```
+git clone https://github.com/EmreSuzen/Prometheus.git
+```
+<br>
+>>>>>>> 62fee44f857753068a959572d5ca1f007bda6849
 
 ## Official Documentation
 
