@@ -43,7 +43,7 @@
                     {{ Form::submit('Se connecter', array('class'=>'btn btn-default', 'style'=>'margin-top:30px;width:100%; background-color: #AA1111;border-style:none;color:#FFFFFF;text-transform:uppercase;font-weight:bold;')) }}
 
                 {{ Form::close() }}
-            </div>
+            </div><!--
             <!-- <p style="font-size: 20px; color:#AA1111; margin-left: -10%; margin-top: 10%;"><-- Accueil</p> -->
         </div>
     </div>
