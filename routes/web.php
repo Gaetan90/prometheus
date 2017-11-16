@@ -25,12 +25,6 @@ Route::get('/', function () {
 
 Route::get('users/register', 'UsersController@register')->name('users.register');
 Route::post('users/signUp', 'UsersController@signUp')->name('users.signUp');
-Route::get('users/validateAccount/{token}', 'UsersController@validateAccount')->name('users.validateAccount');
-Route::get('users/changePassword/{token}', 'UsersController@changePassword')->name('users.changePassword');
-Route::get('users/resetPassword', 'UsersController@askResetPassword')->name('users.askResetPassword');
-Route::post('users/resetPasswordPost', 'UsersController@askResetPasswordPost')->name('users.askResetPasswordPost');
-Route::get('users/resetPassword/{token}', 'UsersController@resetPassword')->name('users.resetPassword');
-Route::post('users/resetPasswordPost/{token}', 'UsersController@resetPasswordPost')->name('users.resetPasswordPost');
 
 Route::get('users/login', 'UsersController@login')->name('users.login');
 Route::post('users/authenticate', 'UsersController@authenticate')->name('users.authenticate');
@@ -79,3 +73,8 @@ Route::get('users/news/show', function()
 {
 	return view('users.newsShow');
 })->name('users.news.show')->middleware('auth');
+
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');

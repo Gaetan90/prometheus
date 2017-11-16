@@ -12,40 +12,11 @@
 		            {{ Form::text('tel', $user->tel) }}
 		        </div>
 
-		        @if($errors->has('tel'))                               
-                        <div class="alert alert-danger">
-                            {{ $errors->first('tel') }}
-                        </div>
-                    @endif
-
 		        <!-- Année -->
 		        <div class="form-group">
-		            {{ Form::label('year','Année :') }}  
-		            {{ Form::select('year', [1=>'A1', 2=>'A2', 3=>'A3', 4=>'A4', 5=>'A5'], $user->annee) }}                          
-		        </div>
-
-		        @if($errors->has('year'))                               
-                    <div class="alert alert-danger">
-                        {{ $errors->first('year') }}
-                    </div>
-                @endif	
-
-		        <!-- Mot de passe -->
-		        <div class="form-group">
-		            {{ Form::label('password','Mot de passe :') }}<br />
-		            {{ Form::password('password') }} 
-		        </div>
-
-		        @if($errors->has('password'))                               
-                    <div class="alert alert-danger">
-                        {{ $errors->first('password') }}
-                    </div>
-                @endif
-
-		         <!-- Mot de passe (confirmation) -->
-		        <div class="form-group">
-		            {{ Form::label('password','Mot de passe (confirmation) :') }}  
-		            {{ Form::password('password_confirmation') }}
+		            {{ Form::label('annee','Année :') }}  
+		            {{ Form::select('annee', [1=>'A1', 2=>'A2', 3=>'A3', 4=>'A4', 5=>'A5'], $user->annee) }}                          
+		            
 		        </div>
 
 		        <center>
@@ -53,6 +24,12 @@
 		        </center>
 
 		        <br>
+
+		        @if(session('alert-error'))                                    
+	                <div class="alert alert-danger">
+	                    {{ session('alert-error') }}
+	                </div>
+	            @endif
 
 		        @if(session('alert-success'))                                    
 	                <div class="alert alert-success">
