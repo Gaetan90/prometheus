@@ -93,7 +93,7 @@ class UsersController extends Controller
 
     public function news($page)
     {
-        $numberNews = News::count();
+        $numberNews = 1;
         $newsPerPage = 3;
         $maxPage = ceil($numberNews / $newsPerPage);        
 
@@ -187,14 +187,14 @@ class UsersController extends Controller
 
         $members_association = Trombinoscope::where('association', $association[0]->association)->get();
 
-        foreach($members_association as $member)
+      /*  foreach($members_association as $member)
         {
             $notification = new Notification;
             $notification->id_user = $user_id;
             $notification->id_user_notify = $member->user_id;
             $notification->text = "Votre président d'association a posté une news.";
             $notification->save();
-        }
+        }*/
 
         return redirect()->route('users.news', [1])->with(['user'=>$user, 'alert-success'=>'Votre news a bien été posté']);
     }
@@ -248,17 +248,18 @@ class UsersController extends Controller
 
         if($isAlreadyRegistered == 0)
         {
-            /*$user = new User;
+            $user = new User;
             $user->nom = $lastname;
             $user->prenom = $firstname;
             $user->email = $email;
             $user->password = bcrypt($password);
             $user->sexe = $sexe;
             $user->tel = $tel;
+            $user->isAccountValidated = 1;
             $user->annee = $year;
-            $user->save();*/
+            $user->save();
 
-            Mail::to($email)->send(new \App\Mail\validateAccount());
+           // Mail::to($email)->send(new \App\Mail\validateAccount());
 
             return redirect()->route('users.register')->with(['alert-success' => 'Félicitations, votre compte a été créé :)']);
         }
@@ -268,4 +269,15 @@ class UsersController extends Controller
             return redirect()->route('users.register')->with(['error-name' => 'Vous avez déjà un compte.'])->withInput();
         }
     }
+public function test()
+    {
+        return view('test');
+    }
+ 
+    public function test2(Request $request)
+    {
+        $password = $request->input('password');
+ 
+        dd(bcrypt($password));
+    }	
 }

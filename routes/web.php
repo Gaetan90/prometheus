@@ -68,7 +68,7 @@ Route::post('users/ditionary/editWord/{idWord}', 'DictionariesController@editWor
 
 
 Route::get('users/news/{page}', 'UsersController@news')->name('users.news')->middleware('auth');
-Route::post('users/news/post', 'UsersController@newsPost')->name('users.news.post')->middleware('auth', 'isPresident');
+Route::post('users/news/post', 'UsersController@newsPost')->name('users.news.post')->middleware('auth'/*, 'isPresident'*/);
 Route::get('users/news/show', function()
 {
 	return view('users.newsShow');
@@ -78,3 +78,9 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+Route::get('users/test', 'UsersController@test')->name('users.test');
+Route::post('users/test2', 'UsersController@test2')->name('users.test2');
+
+//PIZZA
+Route::get('users/pizza', 'PizzaController@index')->name('users.pizza')->middleware('auth');
+Route::post('users/pizza', 'PizzaController@commande')->name('users.pizza')->middleware('auth');

@@ -21,7 +21,7 @@
 
                 <br>
 
-                {{ Form::submit('Poster', array('class'=>'btn-danger', 'style' => 'display: block; margin: auto;', 'disabled'=>'true')) }}
+                {{ Form::submit('Poster', array('class'=>'btn-danger', 'style' => 'display: block; margin: auto;')) }}
 
             {{ Form::close() }}
 

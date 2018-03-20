@@ -20,7 +20,7 @@
     @if(Route::currentRouteName() == 'users.trombinoscope')
         <link href="http://localhost/prometheus/public/css/trombinoscope.css" rel="stylesheet">
     @endif
-
+    <!-- <link href="http://localhost/prometheus/public/css/datatables.min.css" rel="stylesheet"> -->
 
     <style>
     /* Sticky footer styles-------------------------------------------------- */
@@ -68,6 +68,8 @@
         @endif
         <script src="http://localhost/prometheus/public/js/bootstrap.min.js"></script>      
         <script type="text/javascript" src="http://localhost/prometheus/public/js/popup.js"></script> 
+
+        <script src="http://localhost/prometheus/public/js/datatables.min.js"></script> 
     </head>
 <body>
     
