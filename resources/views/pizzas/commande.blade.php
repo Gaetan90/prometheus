@@ -31,11 +31,11 @@
 				@endforeach
 			</tbody>
 		</table>
-		{{ Form::button('Commander', array('id'=>'submit_commande','type'=>'submit','class'=>'btn btn-primary btn-lg btn-block disabled')) }}
+		{{ Form::button('Commander', array('id'=>'submit_commande','type'=>'submit','class'=>'btn btn-primary btn-lg btn-block', 'disabled'=>'disabled')) }}
 	{{ Form::close() }}
 <script>
 $(document).on("click", ".pizza_radio", function() {
-	$('#submit_commande').removeClass("disabled");
+	$('#submit_commande').removeAttr('disabled');
 	$('#pizza_error').addClass("hidden");
 });
 </script>
