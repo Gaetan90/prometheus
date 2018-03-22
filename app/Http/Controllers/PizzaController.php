@@ -16,11 +16,17 @@ class PizzaController extends Controller
      public function index(){
      	$user = Auth::user();
      	$pizzas = Pizza::all();
+          $test = 'blabal';
      	return view('pizzas/commande')->with(['user'=>$user,'pizzas'=>$pizzas]);
      }
 
       public function commande(Request $request){
      	$user = Auth::user();
+          if($request->input('pizza') == null){
+               $alerte = 'Veuillez selectionner une pizza.';
+               $pizzas = Pizza::all();
+               return view('pizzas/commande')->with(['user'=>$user,'pizzas'=>$pizzas, 'alerte'=> $alerte]);
+          }
      	$pizza = Pizza::find($request->input('pizza'));
           $commande = new Commande;
           $commande->date = date("Y-m-d");
