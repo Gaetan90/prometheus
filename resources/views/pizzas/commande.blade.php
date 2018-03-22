@@ -20,7 +20,7 @@
 						<td>{{ $pizza->price }}</td>
 						<td>
 							<div class="form-check">
-								{{ Form::radio('pizza', $pizza->id, false,array('class'=>'form-check-input')) }}
+								{{ Form::radio('pizza', $pizza->id, false,array('class'=>'form-check-input')) }} 
 							</div>
 						</td>
 

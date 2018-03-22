@@ -87,6 +87,7 @@
                         <ul class="nav navbar-nav">
                             <li><a href="{{ URL::route('users.index') }}">Accueil</a></li>
                             <li><a href="{{ URL::route('users.trombinoscope') }}">Trombinoscope</a></li>
+                            <li><a href="{{ URL::route('users.pizza') }}">Pizza</a></li>
                             <li><a href="{{ URL::route('users.news', [1]) }}">News</a></li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="">Dictionnaire &nbsp<span class="caret"></span></a>
