@@ -37,4 +37,21 @@ class PizzaController extends Controller
      	
      	return view('pizzas/validerCommande')->with(['user'=>$user,'pizza'=>$pizza,'commande'=>$commande]);
      }
+
+     public function listeCommandeEncours(){
+          $user = Auth::user();
+          $commandes = Commande::where('date_livraison',date("Y-m-d",strtotime('next friday')))->get();
+          
+          return view('pizzas/listeCommandeEncours')->with(['user'=>$user,'commandes'=>$commandes]);
+     }
+
+      public function deleteCommande(Request $request){
+          $user = Auth::user();
+          $res=Commande::where('id',$request->input('idCommande'))->delete();
+          $commandes = Commande::where('date_livraison',date("Y-m-d",strtotime('next friday')))->get();
+          return view('pizzas/listeCommandeEncours')->with(['user'=>$user,'commandes'=>$commandes]);
+     }
+
+
+
 }

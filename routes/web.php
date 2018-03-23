@@ -84,3 +84,7 @@ Route::post('users/test2', 'UsersController@test2')->name('users.test2');
 //PIZZA
 Route::get('users/pizza', 'PizzaController@index')->name('users.pizza')->middleware('auth');
 Route::post('users/pizza', 'PizzaController@commande')->name('users.pizza')->middleware('auth');
+
+
+Route::get('users/listeCommandeEncours', 'PizzaController@listeCommandeEncours')->name('users.listeCommandeEncours')->middleware('auth');
+Route::post('users/listeCommandeEncours', 'PizzaController@deleteCommande')->name('users.deleteCommande')->middleware('auth');
