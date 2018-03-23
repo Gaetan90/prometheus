@@ -5,7 +5,10 @@
 	@if(isset($alerte))
 		<p id="pizza_error" class="alert alert-danger text-center">{{ $alerte }}</p>
 	@endif
-	{{ Form::open(array('route'=>'users.pizza')) }}
+	@if(isset($successMsg))
+		<p id="pizza_success" class="alert alert-success text-center">{{ $successMsg }}</p>
+	@endif
+	{{ Form::open(['route'=>'users.validercommande', 'method'=>'GET']) }}
 		<table id="commmande" class="table table-striped table-bordered">
 			<thead>
 				<tr>
@@ -23,7 +26,7 @@
 						<td>{{ $pizza->price }}</td>
 						<td>
 							<div class="form-check">
-								{{ Form::radio('pizza', $pizza->id, false,array('class'=>'form-check-input pizza_radio')) }} 
+								{{ Form::radio('idpizza', $pizza->id, false,array('class'=>'form-check-input pizza_radio')) }} 
 							</div>
 						</td>
 						<!-- <td>{{ Form::number($pizza->id, '', array('placeholder'=>'Nombre', 'class'=>'form-control','min'=>'0')) }}</td> -->
