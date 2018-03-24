@@ -17,10 +17,14 @@ class PizzaController extends Controller
      public function index($successMsg = null){
           $user = Auth::user();
           $pizzas = Pizza::all();
-          if( Input::has('successMsg') ) {
-               $successMsg = Input::get('successMsg');
+          $userHasOrdered = Commande::where('date_livraison',date("Y-m-d",strtotime('next friday')))->where('user_id', $user->id)->get();
+          if($userHasOrdered->isEmpty()){ // l'utilisateur n'a pas encore commandé
+               return view('pizzas/pizzaIndex')->with(['user'=>$user,'pizzas'=>$pizzas]); 
+          }else{ // l'utilisateur a deja commandé -> liste de ses commandes
+               if(Input::has('successMsg')) { $successMsg = Input::get('successMsg'); }
+               $commandes = Commande::where('user_id', $user->id)->orderBy('date_livraison', 'desc')->get();
+               return view('pizzas/pizzaIndex')->with(['user'=>$user,'commandes'=>$commandes, 'successMsg' => $successMsg]);
           }
-     	return view('pizzas/pizzaIndex')->with(['user'=>$user,'pizzas'=>$pizzas,'successMsg' => $successMsg]);
      }
 
      public function enterOrder(Request $request){

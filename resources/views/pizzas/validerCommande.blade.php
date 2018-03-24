@@ -20,7 +20,7 @@
 					</tbody>
 				</table>
 		{{ Form::hidden('idpizza', '$pizza->id') }}		
-		{{ Form::button('Valider ma commande', array('id'=>'confirm_commande','type'=>'submit','class'=>'btn btn-primary btn-lg btn-block')) }}
+		{{ Form::button('Valider ma commande', array('id'=>'confirm_commande','type'=>'submit','class'=>'btn btn-success btn-lg btn-block')) }}
 	{{ Form::close() }}
-	<a href="{{ route('users.pizza') }}" class="btn btn-danger btn-lg btn-block">Annuler</a>
+	<div><a href="{{ route('users.pizza') }}" class="btn btn-danger btn-lg btn-block">Annuler</a></div>
 @stop
