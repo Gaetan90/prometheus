@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
 use App\Pizza;
 use App\Commande;
@@ -13,10 +14,13 @@ use App\Commande;
 
 class PizzaController extends Controller
 {
-     public function index(){
-     	$user = Auth::user();
-     	$pizzas = Pizza::all();
-     	return view('pizzas/pizzaIndex')->with(['user'=>$user,'pizzas'=>$pizzas]);
+     public function index($successMsg = null){
+          $user = Auth::user();
+          $pizzas = Pizza::all();
+          if( Input::has('successMsg') ) {
+               $successMsg = Input::get('successMsg');
+          }
+     	return view('pizzas/pizzaIndex')->with(['user'=>$user,'pizzas'=>$pizzas,'successMsg' => $successMsg]);
      }
 
      public function enterOrder(Request $request){
@@ -30,18 +34,17 @@ class PizzaController extends Controller
           return view('pizzas/validerCommande')->with(['user'=>$user,'pizza'=>$pizza]);
      }
 
-     public function registerOrder($idpizza){
+     public function registerOrder(Request $request){
      	$user = Auth::user();
           $pizzas = Pizza::all();
           $commande = new Commande;
           $commande->date = date("Y-m-d");
           $commande->user_id = $user->id;
-          $commande->pizza_id = $idpizza;
+          $commande->pizza_id = $request->input('idpizza');
           $commande->date_livraison = date("Y-m-d",strtotime('next friday'));
           $commande->save();
-     	
           $successMsg = 'Votre commande a été enregistrée.';
-     	return view('pizzas/pizzaIndex')->with(['user'=>$user, 'pizzas'=>$pizzas, 'commande'=>$commande, 'successMsg' => $successMsg]);
+          return redirect()->action('PizzaController@index',['successMsg'=>$successMsg]);
      }
 
      public function listeCommandeEncours(){
