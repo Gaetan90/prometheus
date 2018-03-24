@@ -37,7 +37,7 @@
 			{{ Form::button('Commander', array('id'=>'submit_commande','type'=>'submit','class'=>'btn btn-primary btn-lg btn-block', 'disabled'=>'disabled')) }}
 		{{ Form::close() }}
 	@endif
-	@if(isset($commandes))
+	@if(isset($orderNextFriday))
 		<h1>Mes commandes</h1>
 		@if(isset($successMsg))
 			<div id="pizza_success" class="alert alert-success alert-dismissible text-center">
@@ -45,7 +45,8 @@
 				{{ $successMsg }}
 			</div>
 		@endif
-		<table id="commmande" class="table table-striped table-bordered">
+		<h3 class="text-success">Commande à venir</h3>
+		<table id="commmande_a_venir" class="table table-striped table-bordered">
 			<thead>
 				<tr>
 					<th>Nom</th>
@@ -58,15 +59,45 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach ($commandes as $comande)
+				@foreach ($orderNextFriday as $order)
 					<tr>
-						<td>{{ $comande->pizza->name }}</td>
-						<td>{{ $comande->pizza->description }}</td>
-						<td>{{ $comande->pizza->price }}</td>
-						<td>{{ $comande->date }}</td>
-						<td>{{ $comande->date_livraison }}</td>
-						<td>{{ $comande->user->nom }} {{ $comande->user->prenom }}</td>
-						<td>A{{ $comande->user->annee }}</td>
+						<td>{{ $order->pizza->name }}</td>
+						<td>{{ $order->pizza->description }}</td>
+						<td>{{ $order->pizza->price }}</td>
+						<td>{{ $order->date }}</td>
+						<td>{{ $order->date_livraison }}</td>
+						<td>{{ $order->user->nom }} {{ $order->user->prenom }}</td>
+						<td>A{{ $order->user->annee }}</td>
+					</tr>
+				@endforeach
+				<tr></tr>
+			</tbody>
+		</table>
+	@endif
+	@if(isset($commandes) && $commandes->isNotEmpty())
+		<h3 class="text-danger">Commandes passées</h3>
+		<table id="commmandes_passees" class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Description</th>
+					<th>Prix</th>
+					<th>Date commande</th>
+					<th>Date livraison</th>
+					<th>User</th>
+					<th>Annee</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach ($commandes as $commande)
+					<tr>
+						<td>{{ $commande->pizza->name }}</td>
+						<td>{{ $commande->pizza->description }}</td>
+						<td>{{ $commande->pizza->price }}</td>
+						<td>{{ $commande->date }}</td>
+						<td>{{ $commande->date_livraison }}</td>
+						<td>{{ $commande->user->nom }} {{ $commande->user->prenom }}</td>
+						<td>A{{ $commande->user->annee }}</td>
 					</tr>
 				@endforeach
 				<tr></tr>

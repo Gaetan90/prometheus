@@ -17,13 +17,14 @@ class PizzaController extends Controller
      public function index($successMsg = null){
           $user = Auth::user();
           $pizzas = Pizza::all();
-          $userHasOrdered = Commande::where('date_livraison',date("Y-m-d",strtotime('next friday')))->where('user_id', $user->id)->get();
-          if($userHasOrdered->isEmpty()){ // l'utilisateur n'a pas encore commandé
+          $nextFriday = date("Y-m-d",strtotime('next friday'));
+          $orderNextFriday = Commande::where('date_livraison',$nextFriday)->where('user_id', $user->id)->get();
+          if($orderNextFriday->isEmpty()){ // l'utilisateur n'a pas encore commandé pour le vendredi prochain
                return view('pizzas/pizzaIndex')->with(['user'=>$user,'pizzas'=>$pizzas]); 
           }else{ // l'utilisateur a deja commandé -> liste de ses commandes
                if(Input::has('successMsg')) { $successMsg = Input::get('successMsg'); }
-               $commandes = Commande::where('user_id', $user->id)->orderBy('date_livraison', 'desc')->get();
-               return view('pizzas/pizzaIndex')->with(['user'=>$user,'commandes'=>$commandes, 'successMsg' => $successMsg]);
+               $commandes = Commande::where('user_id', $user->id)->where('date_livraison', '<', $nextFriday)->orderBy('date_livraison', 'desc')->get();
+               return view('pizzas/pizzaIndex')->with(['user'=>$user,'orderNextFriday'=>$orderNextFriday,'commandes'=>$commandes,'successMsg' => $successMsg]);
           }
      }
 
