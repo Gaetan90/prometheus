@@ -54,8 +54,6 @@
 					<th>Prix</th>
 					<th>Date commande</th>
 					<th>Date livraison</th>
-					<th>User</th>
-					<th>Annee</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -66,8 +64,6 @@
 						<td>{{ $order->pizza->price }}</td>
 						<td>{{ $order->date }}</td>
 						<td>{{ $order->date_livraison }}</td>
-						<td>{{ $order->user->nom }} {{ $order->user->prenom }}</td>
-						<td>A{{ $order->user->annee }}</td>
 					</tr>
 				@endforeach
 				<tr></tr>
@@ -84,8 +80,6 @@
 					<th>Prix</th>
 					<th>Date commande</th>
 					<th>Date livraison</th>
-					<th>User</th>
-					<th>Annee</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -96,8 +90,6 @@
 						<td>{{ $commande->pizza->price }}</td>
 						<td>{{ $commande->date }}</td>
 						<td>{{ $commande->date_livraison }}</td>
-						<td>{{ $commande->user->nom }} {{ $commande->user->prenom }}</td>
-						<td>A{{ $commande->user->annee }}</td>
 					</tr>
 				@endforeach
 				<tr></tr>
