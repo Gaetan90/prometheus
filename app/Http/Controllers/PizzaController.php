@@ -14,12 +14,12 @@ use App\Commande;
 
 class PizzaController extends Controller
 {
-     public function index($successMsg = null){
+     public function index($successMsg = null, $newOrder = null){
           $user = Auth::user();
           $pizzas = Pizza::all();
           $nextFriday = date("Y-m-d",strtotime('next friday'));
           $orderNextFriday = Commande::where('date_livraison',$nextFriday)->where('user_id', $user->id)->get();
-          if($orderNextFriday->isEmpty()){ // l'utilisateur n'a pas encore commandé pour le vendredi prochain
+          if(Input::has('newOrder') || $orderNextFriday->isEmpty()){ // l'utilisateur n'a pas encore commandé pour le vendredi prochain
                return view('pizzas/pizzaIndex')->with(['user'=>$user,'pizzas'=>$pizzas]); 
           }else{ // l'utilisateur a deja commandé -> liste de ses commandes
                if(Input::has('successMsg')) { $successMsg = Input::get('successMsg'); }

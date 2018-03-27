@@ -2,7 +2,7 @@
 	
 @section('contenu')
 	{{ Form::open(['route'=>'users.enregistrercommande']) }}
-		<h1>Valider Commande pizza </h1>
+		<h1>Valider commande pizza </h1>
 				<table id="commmande" class="table table-striped table-bordered">
 					<thead>
 						<tr>
