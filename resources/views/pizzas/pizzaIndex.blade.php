@@ -95,8 +95,8 @@
 						<td>{{ $commande->pizza->name }}</td>
 						<td>{{ $commande->pizza->description }}</td>
 						<td>{{ $commande->pizza->price }}</td>
-						<td>{{ date('d/m/Y', strtotime($order->date)) }}</td>
-						<td>{{ date('d/m/Y', strtotime($order->date_livraison)) }}</td>
+						<td>{{ date('d/m/Y', strtotime($commande->date)) }}</td>
+						<td>{{ date('d/m/Y', strtotime($commande->date_livraison)) }}</td>
 					</tr>
 				@endforeach
 				<tr></tr>
